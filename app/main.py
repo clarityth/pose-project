@@ -1,12 +1,30 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, UploadFile, File
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
 from sqlalchemy.orm import Session
-from database import SessionLocal, engine
-from models import Base, User, UserProfile
-from utils import hash_password, verify_password
+from app.database import SessionLocal, engine
+from app.models import Base, User, UserProfile
+from app.utils import hash_password, verify_password
+import shutil
+import os
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# CORS 설정
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+UPLOAD_DIR = "../uploaded_images"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 def get_db():
     db = SessionLocal()
@@ -25,7 +43,7 @@ class LoginRequest(BaseModel):
     password: str
 
 class ProfileRequest(BaseModel):
-    email: EmailStr
+    user_id: int
     gender: str
     age: int
     weight: int
@@ -53,14 +71,13 @@ def login(req: LoginRequest, db: Session = Depends(get_db)):
 
 @app.post("/profile")
 def create_profile(req: ProfileRequest, db: Session = Depends(get_db)):
-    email = str(req.email)
-    user = db.query(User).filter(User.email == email).first()
+    user = db.query(User).filter(User.id == req.user_id).first()
     if not user:
-        raise HTTPException(status_code=404, detail="해당 이메일의 사용자가 없습니다.")
-    if db.query(UserProfile).filter(UserProfile.user_id == user.id).first():
-        raise HTTPException(status_code=400, detail="이미 프로필이 등록되어 있습니다.")
+        raise HTTPException(status_code=404, detail="사용자 없음")
+    if db.query(UserProfile).filter(UserProfile.user_id == req.user_id).first():
+        raise HTTPException(status_code=400, detail="이미 등록됨")
     profile = UserProfile(
-        user_id=user.id,
+        user_id=req.user_id,
         gender=req.gender,
         age=req.age,
         weight=req.weight,
@@ -68,5 +85,11 @@ def create_profile(req: ProfileRequest, db: Session = Depends(get_db)):
     )
     db.add(profile)
     db.commit()
-    db.refresh(profile)
     return {"message": "신체 정보 등록 완료"}
+
+@app.post("/upload-image")
+def upload_image(user_id: int, file: UploadFile = File(...)):
+    file_location = os.path.join(UPLOAD_DIR, f"user_{user_id}_{file.filename}")
+    with open(file_location, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    return {"message": "이미지 업로드 완료", "file_path": file_location}

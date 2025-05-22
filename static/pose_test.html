@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Pose API 테스트</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; background: #f9f9f9 }
+    form { background: white; padding: 15px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 20px }
+    input, button { width: 100%; padding: 10px; margin-top: 10px }
+    button { background: #007bff; color: white; border: none; font-weight: bold; cursor: pointer }
+    button:hover { background: #0056b3 }
+  </style>
+</head>
+<body>
+
+<h2>1. 회원가입</h2>
+<form id="registerForm">
+  <input type="email" id="regEmail" placeholder="이메일" required>
+  <input type="password" id="regPassword" placeholder="비밀번호" required>
+  <button type="submit">회원가입</button>
+</form>
+
+<h2>2. 로그인</h2>
+<form id="loginForm">
+  <input type="email" id="loginEmail" placeholder="이메일" required>
+  <input type="password" id="loginPassword" placeholder="비밀번호" required>
+  <button type="submit">로그인</button>
+</form>
+
+<h2>3. 프로필 등록</h2>
+<form id="profileForm">
+  <input type="text" id="gender" placeholder="성별" required>
+  <input type="number" id="age" placeholder="나이" required>
+  <input type="number" id="weight" placeholder="몸무게" required>
+  <input type="number" id="height" placeholder="키" required>
+  <button type="submit">프로필 등록</button>
+</form>
+
+<h2>4. 이미지 업로드</h2>
+<form id="imageForm" enctype="multipart/form-data">
+  <input type="file" id="imageFile" accept="image/*" required>
+  <button type="submit">이미지 업로드</button>
+</form>
+
+<script>
+const api = "http://127.0.0.1:8000";
+let currentUserId = null;
+
+document.getElementById("registerForm").onsubmit = async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("regEmail").value;
+  const password = document.getElementById("regPassword").value;
+  const res = await fetch(`${api}/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+  const result = await res.json();
+  alert(result.message || result.detail);
+};
+
+document.getElementById("loginForm").onsubmit = async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+  const res = await fetch(`${api}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+  const result = await res.json();
+  if (res.ok) {
+    currentUserId = result.user_id;
+    alert("로그인 성공");
+  } else {
+    alert(result.detail || "로그인 실패");
+  }
+};
+
+document.getElementById("profileForm").onsubmit = async (e) => {
+  e.preventDefault();
+  if (!currentUserId) return alert("먼저 로그인하세요.");
+  const res = await fetch(`${api}/profile`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      user_id: currentUserId,
+      gender: document.getElementById("gender").value,
+      age: Number(document.getElementById("age").value),
+      weight: Number(document.getElementById("weight").value),
+      height: Number(document.getElementById("height").value)
+    })
+  });
+  alert((await res.json()).message || "에러");
+};
+
+document.getElementById("imageForm").onsubmit = async (e) => {
+  e.preventDefault();
+  if (!currentUserId) return alert("먼저 로그인하세요.");
+  const formData = new FormData();
+  formData.append("file", document.getElementById("imageFile").files[0]);
+  const res = await fetch(`${api}/upload-image?user_id=${currentUserId}`, {
+    method: "POST",
+    body: formData
+  });
+  alert((await res.json()).message || "업로드 실패");
+};
+</script>
+</body>
+</html>
