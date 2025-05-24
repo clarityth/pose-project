@@ -1,0 +1,3 @@
+Torso_Vertical_Tilt_deg: 골반, 어깨 중점을 잇는 선의 수직 기울기 각도
+Ear_Hip_Vertical_Tilt_deg : 귀, 골반 중점을 잇는 선의 수직 기울기 각도 (첨부 논문은 옆에서 봤을 때의 지표를 쓰지만 일단 넣었습니다.)
+Shoulder_Line_Horizontal_Tilt_deg,Hip_Line_Horizontal_Tilt_deg : 양 어깨, 양 골반을 잇는 선 수평 기울기 각도 (높이 차이대신 기울기로 쓰는 논문이 있어서 계산했습니다.)
