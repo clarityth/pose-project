@@ -12,7 +12,6 @@ from pydantic import BaseModel, EmailStr
 from sqlalchemy.orm import Session
 import shutil, os
 from pathlib import Path
-import base64
 
 import tensorflow as tf
 
@@ -33,6 +32,7 @@ import joblib
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
 
+# StaticFiles 설정: "static" 디렉터리를 "/static" 경로로 제공
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # CORS 설정
@@ -44,7 +44,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 UPLOAD_DIR = Path("../uploaded_images")
 TMP_OUTPUT_DIR = Path("static/pose_results")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -52,7 +51,7 @@ os.makedirs(TMP_OUTPUT_DIR, exist_ok=True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Ensure MoveNet tflite model is available
+# MoveNet TFLite 모델 로드
 MODEL_DIR = BASE_DIR / "pose_model"
 MOVENET_TFLITE_MODEL_PATH = MODEL_DIR / "movenet_thunder.tflite"
 if not MOVENET_TFLITE_MODEL_PATH.exists():
@@ -65,6 +64,7 @@ interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
+# ML 모델(스케일러, 랜덤포레스트, 레이블 인코더) 로드
 SCALER_PATH        = BASE_DIR / "model" / "exercise_scaler.pkl"
 MODEL_PATH         = BASE_DIR / "model" / "exercise_rf_model.pkl"
 LABEL_ENCODER_PATH = BASE_DIR / "model" / "exercise_label_encoder.pkl"
@@ -82,7 +82,7 @@ def get_db():
     finally:
         db.close()
 
-# 요청 모델
+# 요청 모델 정의
 class RegisterRequest(BaseModel):
     email: EmailStr
     password: str
@@ -144,7 +144,7 @@ async def upload_image(
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
 ):
-    # 1) 파일 저장
+    # 1) 이미지 파일 저장
     dest_path = UPLOAD_DIR / f"user_{user_id}_{file.filename}"
     with open(dest_path, "wb") as buf:
         shutil.copyfileobj(file.file, buf)
@@ -168,7 +168,7 @@ async def upload_image(
     metrics = analysis["metrics"]
     coords  = analysis["points_coords"]
 
-    # 4.5) 이전 업로드된 지표 불러와 변화량 계산
+    # 4.5) 이전 업로드된 지표 불러와 변화량 계산(2번째 최신 데이터)
     prev_feature = (
         db.query(Feature)
         .filter(Feature.user_profile_id == profile.id)
@@ -187,7 +187,6 @@ async def upload_image(
             ("hip_line_horizontal_tilt_deg", "hip_line_horizontal_tilt_deg"),
         ]:
             old_val = getattr(prev_feature, db_field)
-            # Use metrics dict; key in metrics is without _px/_deg
             if key.endswith("_px"):
                 new_val = metrics[key.replace("_px", "")]
             else:
@@ -217,10 +216,8 @@ async def upload_image(
         )
         .all()
     )
-    # numpy 배열로 변환
     arr = np.array(df, dtype=float)  # shape (N,6)
     percentiles = {}
-    # 각 컬럼별 percentile 계산
     for idx, key in enumerate([
         "shoulder_height_diff",
         "hip_height_diff",
@@ -230,16 +227,14 @@ async def upload_image(
         "hip_line_horizontal_tilt"
     ]):
         values = arr[:, idx]
-        # 현재 값이 nan 이면 퍼센타일도 None
         cur = metrics[key]
         if cur is None or math.isnan(cur):
             percentiles[key] = None
         else:
-            # 백분위 = (값 이하 개수 / 전체) * 100
             rank = np.sum(values <= cur) / len(values) * 100
             percentiles[key] = round(rank, 1)
 
-    # 6) 시각화 이미지 저장
+    # 6) 시각화 이미지 저장(StaticFiles 폴더 아래)
     stem = dest_path.stem
     kp_img    = TMP_OUTPUT_DIR / f"{stem}_keypoints.png"
     sh_img    = TMP_OUTPUT_DIR / f"{stem}_shoulder_hip.png"
@@ -272,7 +267,7 @@ async def upload_image(
     db.commit()
     db.refresh(feature)
 
-    # 8) 이번 업로드를 포함한 이전 기록 최대 5개만 조회
+    # 8) 이번 업로드 포함 이전 기록 최대 5개만 조회
     all_features = (
         db.query(Feature)
         .filter(Feature.user_profile_id == profile.id)
@@ -280,7 +275,6 @@ async def upload_image(
         .limit(5)
         .all()
     )
-
     history_list = []
     for feat in all_features:
         created_at = feat.created_at
@@ -305,8 +299,7 @@ async def upload_image(
     now_kst = datetime.datetime.now(timezone(timedelta(hours=9)))
     days_since = (now_kst - created_at_kst).days
 
-    # 9) Randomforest 모델 운동 추천
-    # DB에서 가져온 profile 값으로 Gender, Age_Group 인코딩 사용
+    # 9) RandomForest 모델 운동 추천
     gender_map = {"남자": 0, "여자": 1}
     age_map = {10: 0, 20: 1, 30: 2, 40: 3, 50: 4, 60: 5}
     g_code = gender_map.get(profile.gender, 0)
@@ -322,19 +315,13 @@ async def upload_image(
         metrics["shoulder_line_horizontal_tilt"],
         metrics["hip_line_horizontal_tilt"],
     ]
-    # NaN 방지를 위해 0으로 대체
     feature_vector = [
         0 if v is None or (isinstance(v, float) and np.isnan(v)) else v
         for v in feature_vector
     ]
 
-    # 1) 스케일링
-    X_scaled = scaler.transform([feature_vector])  # shape (1,6)
-
-    # 2) 예측 (다중 클래스 확률)
-    proba = rf_model.predict_proba(X_scaled)[0]  # e.g. [0.1, 0.7, 0.2]
-
-    # 3) 상위 3개 추천
+    X_scaled = scaler.transform([feature_vector])
+    proba = rf_model.predict_proba(X_scaled)[0]
     idxs = proba.argsort()[::-1][:3]
     recommendations = []
     for i in idxs:
@@ -400,8 +387,6 @@ async def upload_image(
     headers = {
         "Authorization": f"Bearer {openrouter_key}",
         "Content-Type": "application/json",
-        # "HTTP-Referer": "https://yourdomain.com",  # 선택
-        # "X-Title": "YourAppName",                 # 선택
     }
     body = {
         "model": "openai/gpt-4o",
@@ -416,20 +401,15 @@ async def upload_image(
     data = resp.json()
     report = data["choices"][0]["message"]["content"]
 
-    # 이미지 base64 인코딩
-    def encode_image_to_base64(path: Path):
-        with open(path, "rb") as f:
-            return "data:image/png;base64," + base64.b64encode(f.read()).decode()
-
-    visuals_base64 = {
-        "keypoints": encode_image_to_base64(kp_img),
-        "shoulder_hip": encode_image_to_base64(sh_img),
-        "torso_tilt": encode_image_to_base64(torso_img),
-        "ear_hip_tilt": encode_image_to_base64(ear_img),
+    # 12) Static URL 방식으로 이미지 경로 반환
+    base_url = os.getenv("BASE_URL")
+    visuals_urls = {
+        "keypoints": f"{base_url}/static/pose_results/{stem}_keypoints.png",
+        "shoulder_hip": f"{base_url}/static/pose_results/{stem}_shoulder_hip.png",
+        "torso_tilt": f"{base_url}/static/pose_results/{stem}_torso_tilt.png",
+        "ear_hip_tilt": f"{base_url}/static/pose_results/{stem}_ear_hip_tilt.png",
     }
 
-
-    # 11) 최종 응답
     return {
         "message": "업로드, 분석, 운동추천, 영상추천, 리포트 생성 완료",
         "user": {
@@ -440,7 +420,7 @@ async def upload_image(
             "weight": profile.weight,
             "height": profile.height,
         },
-        "visuals": visuals_base64,
+        "visuals": visuals_urls,
         "metrics": {
             "shoulder_height_diff_px": metrics["shoulder_height_diff"],
             "hip_height_diff_px": metrics["hip_height_diff"],

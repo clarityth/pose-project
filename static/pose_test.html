@@ -214,7 +214,9 @@
   </div>
 
   <script>
-    const api = "http://127.0.0.1:8000";
+    // 1) API 주소를 실제 서버 IP 혹은 도메인으로 바꿔야 이미지 URL도 올바르게 작동합니다.
+    const api = "http://localhost:8000"; // ← 여기만 자신의 서버 주소/포트로 수정
+
     let currentUserId = null;
     let historyChartInstance = null;
 
@@ -250,7 +252,6 @@
       if (res.ok) {
         currentUserId = j.user_id;
         currentUserName = j.name;
-        document.getElementById("userInfo").textContent = "환영합니다, " + currentUserName;
         window.alert("로그인 성공: user_id=" + currentUserId);
       } else {
         window.alert(j.detail || "로그인 실패");
@@ -348,9 +349,10 @@
         ? parseInt(data.days_since) + "일"
         : "-";
 
-      // Keypoint Visuals
+      // Keypoint Visuals (Static URL)
       const imgs = document.getElementById("images");
       imgs.innerHTML = "";
+      // data.visuals 객체 안에 이미 URL이 들어있으므로, 그대로 <img src="URL">로 렌더링
       Object.entries(data.visuals || {}).forEach(([k, url]) => {
         const d = document.createElement("div");
         d.style.display = "inline-block";
