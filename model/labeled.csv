@@ -1,0 +1,655 @@
+Gender,Age_Group,Shoulder_Height_Diff_px,Hip_Height_Diff_px,Torso_Vertical_Tilt_deg,Ear_Hip_Vertical_Tilt_deg,Shoulder_Line_Horizontal_Tilt_deg,Hip_Line_Horizontal_Tilt_deg,Exercise_Label
+Female,Teen,1.0,3.0,-0.55,-0.74,0.34,1.74,Glute Bridge
+Female,Teen,2.0,1.0,-0.32,0.42,-0.7,0.62,Resistance Band Shoulder Squeeze
+Female,Teen,1.0,4.0,2.33,0.67,0.44,2.39,Glute Bridge
+Female,Teen,1.0,1.0,3.35,1.11,-0.38,-0.52,Bird Dog
+Female,Teen,3.0,4.0,-0.28,-1.09,1.08,-2.18,Glute Bridge
+Female,Teen,6.0,0.0,-1.56,-3.29,-2.22,-0.0,Wall Angel
+Female,Teen,5.0,0.0,1.79,0.36,1.81,-0.0,Wall Angel
+Female,Teen,0.0,4.0,0.26,-0.91,-0.0,-2.25,Glute Bridge
+Female,Teen,7.0,2.0,1.25,1.68,2.04,0.95,Wall Angel
+Female,Teen,10.0,3.0,1.69,2.27,3.27,1.79,Wall Angel
+Female,Teen,3.0,1.0,-1.49,-1.95,1.1,-0.6,Resistance Band Shoulder Squeeze
+Female,Teen,1.0,1.0,-2.12,-0.36,-0.35,0.58,Bird Dog
+Female,Teen,1.0,0.0,-0.61,1.06,0.4,-0.0,Bird Dog
+Female,Teen,3.0,2.0,1.19,1.26,-1.21,1.22,Wall Angel
+Female,Teen,6.0,3.0,-0.54,-0.36,1.79,-1.74,Wall Angel
+Female,Teen,7.0,1.0,2.12,1.21,-2.51,-0.69,Wall Angel
+Female,Teen,4.0,3.0,0.84,0.95,1.35,-1.67,Wall Angel
+Female,Teen,6.0,0.0,2.42,0.77,2.02,-0.0,Wall Angel
+Female,Teen,4.0,2.0,1.46,-0.2,1.35,-1.16,Wall Angel
+Female,Teen,3.0,1.0,-2.88,-1.77,-1.07,-0.6,Bird Dog
+Female,Teen,9.0,3.0,-2.02,-2.96,-3.32,-1.64,Wall Angel
+Female,Teen,2.0,2.0,-1.48,-1.77,-0.69,-1.04,Bird Dog
+Female,Teen,0.0,3.0,-1.69,-1.97,-0.0,-1.67,Glute Bridge
+Female,Teen,2.0,1.0,-3.1,-1.95,0.72,-0.6,Bird Dog
+Female,Teen,3.0,0.0,0.0,-0.42,-1.17,-0.0,Wall Angel
+Female,Teen,6.0,1.0,-1.19,-1.19,-2.25,0.59,Wall Angel
+Female,Teen,2.0,0.0,0.85,1.15,-0.77,-0.0,Resistance Band Shoulder Squeeze
+Female,Teen,3.0,1.0,-0.81,0.37,1.04,-0.58,Resistance Band Shoulder Squeeze
+Female,Teen,4.0,0.0,-2.76,-2.68,-1.54,-0.0,Wall Angel
+Female,Teen,2.0,1.0,-1.09,-1.33,-0.83,-0.58,Resistance Band Shoulder Squeeze
+Female,Teen,2.0,1.0,1.49,1.01,0.74,0.56,Resistance Band Shoulder Squeeze
+Female,Teen,0.0,3.0,2.3,0.4,-0.0,1.58,Glute Bridge
+Female,Teen,1.0,1.0,-0.81,-1.29,0.37,-0.56,Bird Dog
+Female,Teen,0.0,4.0,-1.09,-0.73,-0.0,2.83,Glute Bridge
+Female,Teen,2.0,1.0,-0.31,-1.25,0.82,0.57,Resistance Band Shoulder Squeeze
+Female,Teen,1.0,1.0,1.53,0.21,0.37,0.57,Bird Dog
+Female,Teen,4.0,3.0,4.5,2.98,1.56,1.91,Bird Dog
+Female,Teen,1.0,2.0,-0.86,-1.35,-0.37,1.13,Glute Bridge
+Female,Teen,6.0,1.0,0.28,0.0,2.22,0.56,Wall Angel
+Female,Teen,4.0,2.0,0.74,0.69,-1.31,-1.04,Wall Angel
+Female,Teen,3.0,2.0,-0.55,-1.34,1.13,-1.21,Resistance Band Shoulder Squeeze
+Female,Teen,2.0,4.0,1.96,-0.56,-0.73,2.2,Glute Bridge
+Female,Teen,3.0,1.0,0.57,-0.19,-1.12,0.54,Resistance Band Shoulder Squeeze
+Female,Teen,4.0,5.0,-1.96,-3.26,1.58,2.92,Glute Bridge
+Female,Teen,0.0,2.0,-3.33,-1.52,-0.0,-1.09,Bird Dog
+Female,Teen,6.0,4.0,-1.02,-1.15,-2.4,2.25,Wall Angel
+Female,Teen,1.0,1.0,1.1,0.38,0.37,-0.62,Glute Bridge
+Female,Teen,1.0,0.0,-0.28,-0.95,-0.32,-0.0,Resistance Band Shoulder Squeeze
+Female,Teen,6.0,1.0,-1.25,-2.26,-1.95,0.52,Wall Angel
+Female,Teen,3.0,1.0,-0.28,-1.19,1.15,0.55,Wall Angel
+Female,Teen,5.0,1.0,-0.49,-0.87,1.6,-0.52,Wall Angel
+Female,Teen,1.0,0.0,0.0,-1.71,0.37,-0.0,Bird Dog
+Female,Teen,5.0,1.0,-0.58,-0.2,-1.88,-0.58,Wall Angel
+Female,Teen,0.0,1.0,0.0,0.0,-0.0,0.65,Glute Bridge
+Female,Teen,2.0,0.0,0.0,-0.36,-0.68,-0.0,Resistance Band Shoulder Squeeze
+Female,Teen,2.0,0.0,-1.75,-1.01,-0.77,-0.0,Resistance Band Shoulder Squeeze
+Female,Teen,0.0,1.0,0.64,-0.67,-0.0,0.62,Glute Bridge
+Female,Teen,0.0,1.0,-1.52,0.21,-0.0,0.62,Bird Dog
+Female,Teen,2.0,1.0,1.29,-0.18,0.66,-0.57,Resistance Band Shoulder Squeeze
+Female,Teen,3.0,1.0,0.86,-1.15,-1.09,0.51,Resistance Band Shoulder Squeeze
+Female,Teen,5.0,2.0,1.9,0.68,1.61,-1.01,Wall Angel
+Female,Teen,0.0,1.0,-1.51,-1.93,-0.0,0.58,Bird Dog
+Female,Teen,5.0,1.0,-2.28,-1.95,1.91,0.54,Wall Angel
+Female,Teen,6.0,1.0,-0.25,-1.26,2.02,-0.58,Wall Angel
+Female,Teen,7.0,3.0,1.9,-0.18,2.47,1.75,Wall Angel
+Female,Teen,3.0,0.0,0.78,0.0,-1.11,-0.0,Resistance Band Shoulder Squeeze
+Female,Teen,3.0,0.0,-0.32,-0.21,-1.02,-0.0,Resistance Band Shoulder Squeeze
+Female,Teen,1.0,1.0,-0.84,-2.0,0.4,0.52,Bird Dog
+Female,Teen,2.0,2.0,0.0,-1.55,-0.72,0.99,Glute Bridge
+Female,Teen,3.0,5.0,-1.55,-1.45,-1.15,2.95,Glute Bridge
+Female,Young Adult,9.0,3.0,1.65,1.32,2.85,1.48,Shoulder Press
+Female,Young Adult,1.0,3.0,-0.75,-1.39,0.38,-1.62,Clamshell
+Female,Young Adult,1.0,3.0,-2.37,-3.98,0.37,-1.61,Plank
+Female,Young Adult,5.0,2.0,-2.33,-0.73,1.67,-1.12,Shoulder Press
+Female,Young Adult,4.0,2.0,-3.12,-4.32,1.41,-1.05,Plank
+Female,Young Adult,2.0,0.0,3.81,0.98,0.69,-0.0,Plank
+Female,Young Adult,3.0,3.0,-3.09,-1.72,-1.12,-1.77,Plank
+Female,Young Adult,1.0,0.0,-0.54,-1.28,0.35,-0.0,Plank
+Female,Young Adult,1.0,1.0,-0.27,-1.65,0.39,-0.62,Plank
+Female,Young Adult,5.0,3.0,0.84,-0.19,-1.88,-1.65,Shoulder Press
+Female,Young Adult,11.0,1.0,-0.76,-2.44,-3.68,-0.5,Shoulder Press
+Female,Young Adult,1.0,1.0,1.38,-2.24,0.37,-0.58,Plank
+Female,Young Adult,5.0,1.0,-1.6,-1.99,1.66,-0.55,Shoulder Press
+Female,Young Adult,5.0,1.0,3.19,2.58,1.87,-0.56,Shoulder Press
+Female,Young Adult,2.0,2.0,1.29,1.25,0.67,1.17,Clamshell
+Female,Young Adult,4.0,1.0,-3.26,-2.36,-1.28,-0.54,Plank
+Female,Young Adult,2.0,0.0,-0.29,-0.59,0.69,-0.0,Resistance Band Arm Stretch
+Female,Young Adult,2.0,4.0,2.21,0.0,0.72,1.93,Clamshell
+Female,Young Adult,5.0,2.0,-0.57,-2.4,1.77,-1.33,Shoulder Press
+Female,Young Adult,0.0,2.0,0.52,0.71,-0.0,1.03,Standing Hip Abduction
+Female,Young Adult,5.0,3.0,-1.31,-0.89,1.77,1.65,Shoulder Press
+Female,Young Adult,5.0,5.0,-1.58,-2.68,1.8,-2.89,Clamshell
+Female,Young Adult,2.0,2.0,-1.73,-1.2,0.67,-1.02,Standing Hip Abduction
+Female,Young Adult,3.0,2.0,-0.99,-1.54,-1.12,-1.05,Shoulder Press
+Female,Young Adult,1.0,2.0,0.0,-1.65,-0.37,-1.23,Clamshell
+Female,Young Adult,1.0,1.0,-1.21,-1.82,-0.36,-0.59,Plank
+Female,Young Adult,1.0,0.0,-0.8,-2.0,-0.35,-0.0,Plank
+Female,Young Adult,2.0,0.0,0.59,-1.02,0.76,-0.0,Resistance Band Arm Stretch
+Female,Young Adult,2.0,2.0,2.43,0.74,-0.72,-1.22,Clamshell
+Female,Young Adult,3.0,1.0,-1.06,-1.99,1.01,0.55,Resistance Band Arm Stretch
+Female,Young Adult,3.0,3.0,0.53,-0.72,-1.01,1.56,Clamshell
+Female,Young Adult,2.0,2.0,0.54,-0.19,-0.77,-1.3,Clamshell
+Female,Young Adult,1.0,3.0,0.26,-0.18,0.35,1.43,Clamshell
+Female,Young Adult,6.0,2.0,0.54,1.27,2.05,1.21,Shoulder Press
+Female,Young Adult,4.0,1.0,-2.1,-1.57,1.47,0.6,Shoulder Press
+Female,Young Adult,4.0,1.0,1.88,0.36,1.27,0.5,Shoulder Press
+Female,Young Adult,0.0,6.0,0.29,1.5,-0.0,3.4,Clamshell
+Female,Young Adult,6.0,3.0,-2.04,,-2.22,-1.89,Shoulder Press
+Female,Young Adult,1.0,1.0,0.26,0.53,0.39,0.55,Standing Hip Abduction
+Female,Young Adult,4.0,2.0,-1.66,-0.37,-1.5,1.21,Shoulder Press
+Female,Young Adult,2.0,1.0,-1.77,-2.59,-0.71,-0.61,Plank
+Female,Young Adult,6.0,1.0,-0.57,-1.15,2.16,-0.63,Shoulder Press
+Female,Young Adult,8.0,3.0,2.63,1.48,2.74,1.52,Shoulder Press
+Female,Young Adult,1.0,0.0,-0.29,-1.17,0.36,-0.0,Plank
+Female,Young Adult,2.0,0.0,0.3,-0.2,0.73,-0.0,Resistance Band Arm Stretch
+Female,Young Adult,2.0,2.0,-0.76,-1.81,0.64,-1.01,Standing Hip Abduction
+Female,Young Adult,0.0,0.0,3.67,0.62,-0.0,-0.0,Plank
+Female,Young Adult,2.0,3.0,-1.84,-1.42,-0.69,-1.87,Clamshell
+Female,Young Adult,4.0,2.0,-0.6,-0.6,-1.5,1.12,Shoulder Press
+Female,Young Adult,2.0,0.0,-1.41,-0.94,-0.77,-0.0,Resistance Band Arm Stretch
+Female,Young Adult,2.0,0.0,2.43,0.75,-0.69,-0.0,Plank
+Female,Young Adult,2.0,1.0,-1.01,-0.71,0.75,0.55,Resistance Band Arm Stretch
+Female,Young Adult,0.0,0.0,-0.55,-0.56,-0.0,-0.0,Russian Twist
+Female,Young Adult,7.0,4.0,2.88,1.32,2.62,2.31,Shoulder Press
+Female,Young Adult,8.0,1.0,-4.23,-3.59,-2.44,-0.51,Shoulder Press
+Female,Young Adult,2.0,0.0,1.77,0.0,0.77,-0.0,Resistance Band Arm Stretch
+Female,Young Adult,5.0,3.0,3.79,2.14,1.9,1.68,Shoulder Press
+Female,Young Adult,2.0,0.0,-0.59,0.8,-0.72,-0.0,Resistance Band Arm Stretch
+Female,Young Adult,2.0,1.0,2.12,1.63,0.69,0.58,Plank
+Female,Young Adult,2.0,1.0,-0.54,0.19,0.69,0.48,Resistance Band Arm Stretch
+Female,Young Adult,4.0,1.0,0.54,0.75,1.44,0.54,Shoulder Press
+Female,Young Adult,0.0,2.0,1.7,1.12,-0.0,1.06,Clamshell
+Female,Young Adult,1.0,1.0,3.35,0.97,0.37,0.54,Plank
+Female,Young Adult,5.0,4.0,2.7,0.9,1.82,2.18,Shoulder Press
+Female,Young Adult,2.0,1.0,-2.56,-1.8,0.68,-0.55,Plank
+Female,Young Adult,1.0,3.0,3.78,2.78,0.37,1.68,Plank
+Female,Young Adult,4.0,3.0,-1.74,-2.18,1.21,-1.65,Shoulder Press
+Female,Young Adult,3.0,2.0,1.55,0.35,1.07,1.09,Resistance Band Arm Stretch
+Female,Young Adult,6.0,0.0,-0.5,-1.6,-2.05,-0.0,Shoulder Press
+Female,Young Adult,2.0,1.0,0.49,-0.35,-0.76,0.57,Resistance Band Arm Stretch
+Female,Young Adult,6.0,0.0,0.0,-0.56,-2.16,-0.0,Shoulder Press
+Female,Young Adult,1.0,0.0,3.56,2.24,-0.38,-0.0,Plank
+Female,Young Adult,3.0,2.0,1.35,0.54,1.09,1.05,Shoulder Press
+Female,Middle-aged,1.0,0.0,-1.39,-2.96,0.34,-0.0,Modified Plank
+Female,Middle-aged,4.0,2.0,0.0,-0.75,-1.31,1.1,Band Shoulder Abduction
+Female,Middle-aged,7.0,1.0,1.05,-0.91,2.44,0.57,Band Shoulder Abduction
+Female,Middle-aged,1.0,1.0,-1.62,-3.31,-0.37,-0.58,Modified Plank
+Female,Middle-aged,1.0,2.0,-0.29,-1.4,-0.36,1.19,Standing Hip Abduction
+Female,Middle-aged,9.0,2.0,-3.65,-2.88,-3.32,-1.19,Band Shoulder Abduction
+Female,Middle-aged,4.0,1.0,1.21,1.02,-1.51,0.62,Band Shoulder Abduction
+Female,Middle-aged,9.0,1.0,0.0,-0.18,2.91,-0.58,Band Shoulder Abduction
+Female,Middle-aged,5.0,0.0,1.6,1.65,1.66,-0.0,Band Shoulder Abduction
+Female,Middle-aged,2.0,2.0,1.32,0.18,-0.71,1.02,Standing Hip Abduction
+Female,Middle-aged,4.0,0.0,-0.68,-1.32,-1.34,-0.0,Band Shoulder Abduction
+Female,Middle-aged,4.0,1.0,-2.89,-2.58,-1.54,-0.55,Band Shoulder Abduction
+Female,Middle-aged,4.0,3.0,-2.64,-2.33,-1.26,-1.68,Band Shoulder Abduction
+Female,Middle-aged,1.0,0.0,-0.53,-0.55,-0.34,-0.0,Cross-Body Arm Stretch
+Female,Middle-aged,2.0,1.0,-1.62,-2.4,0.69,0.52,Modified Plank
+Female,Middle-aged,5.0,1.0,-1.19,-1.82,-1.67,-0.57,Band Shoulder Abduction
+Female,Middle-aged,1.0,1.0,0.86,0.77,-0.37,0.55,Modified Plank
+Female,Middle-aged,1.0,0.0,2.45,-1.9,-0.36,-0.0,Modified Plank
+Female,Middle-aged,1.0,1.0,-2.39,-1.42,-0.28,-0.51,Modified Plank
+Female,Middle-aged,3.0,3.0,-1.86,-2.39,-1.03,-1.47,Standing Hip Abduction
+Female,Middle-aged,2.0,2.0,-1.16,0.0,-0.69,-1.12,Standing Hip Abduction
+Female,Middle-aged,6.0,0.0,2.82,0.73,2.08,-0.0,Band Shoulder Abduction
+Female,Middle-aged,3.0,2.0,2.3,0.18,1.09,1.12,Band Shoulder Abduction
+Female,Middle-aged,7.0,1.0,-0.48,-1.95,2.29,0.54,Band Shoulder Abduction
+Female,Middle-aged,11.0,2.0,-3.32,-3.76,-4.03,-1.16,Band Shoulder Abduction
+Female,Middle-aged,5.0,1.0,-2.59,-2.14,-1.76,-0.56,Band Shoulder Abduction
+Female,Middle-aged,3.0,1.0,-3.58,-1.6,-1.02,-0.53,Modified Plank
+Female,Middle-aged,2.0,1.0,-0.74,-2.91,0.75,-0.55,Modified Plank
+Female,Middle-aged,1.0,2.0,1.02,0.35,0.36,1.1,Standing Hip Abduction
+Female,Middle-aged,1.0,1.0,-0.49,-0.17,-0.35,-0.52,Seated Marches
+Female,Middle-aged,3.0,0.0,0.27,-0.36,1.07,-0.0,Cross-Body Arm Stretch
+Female,Middle-aged,2.0,2.0,0.54,-1.49,-0.74,-1.01,Standing Hip Abduction
+Female,Middle-aged,2.0,1.0,0.25,0.0,0.62,0.49,Cross-Body Arm Stretch
+Female,Middle-aged,2.0,2.0,-0.3,-1.53,-0.67,1.05,Standing Hip Abduction
+Female,Middle-aged,7.0,0.0,-2.62,-2.66,-2.67,-0.0,Band Shoulder Abduction
+Female,Middle-aged,2.0,4.0,-2.28,-1.75,0.68,-1.91,Standing Hip Abduction
+Female,Middle-aged,3.0,2.0,0.53,-1.46,1.07,-1.17,Cross-Body Arm Stretch
+Female,Middle-aged,4.0,1.0,-4.2,-3.84,-1.41,-0.52,Modified Plank
+Female,Middle-aged,8.0,0.0,-1.29,-1.8,2.78,-0.0,Band Shoulder Abduction
+Female,Middle-aged,1.0,1.0,-0.7,-0.16,0.28,-0.52,Seated Marches
+Female,Middle-aged,0.0,1.0,0.83,0.94,-0.0,0.52,Modified Plank
+Female,Middle-aged,4.0,2.0,0.0,-1.45,1.47,1.06,Band Shoulder Abduction
+Female,Middle-aged,1.0,1.0,-0.26,-1.28,-0.33,0.49,Modified Plank
+Female,Middle-aged,6.0,1.0,2.84,3.75,2.01,0.53,Band Shoulder Abduction
+Female,Middle-aged,2.0,3.0,2.08,2.46,-0.7,1.62,Standing Hip Abduction
+Female,Middle-aged,1.0,1.0,1.94,1.14,-0.38,0.53,Modified Plank
+Female,Middle-aged,0.0,2.0,-1.07,-0.92,-0.0,1.12,Standing Hip Abduction
+Female,Middle-aged,2.0,1.0,-2.34,-2.33,-0.71,0.52,Modified Plank
+Female,Middle-aged,1.0,2.0,1.11,0.38,0.38,-1.09,Standing Hip Abduction
+Female,Middle-aged,5.0,1.0,-0.27,0.94,1.76,0.48,Band Shoulder Abduction
+Female,Middle-aged,14.0,4.0,2.13,2.13,5.26,2.2,Band Shoulder Abduction
+Female,Middle-aged,3.0,2.0,-1.13,-2.12,-1.1,-1.08,Band Shoulder Abduction
+Female,Middle-aged,8.0,1.0,2.54,0.79,2.86,-0.51,Band Shoulder Abduction
+Female,Middle-aged,3.0,2.0,-1.19,-2.19,1.08,-1.07,Band Shoulder Abduction
+Female,Middle-aged,2.0,3.0,-0.55,-2.44,-0.75,1.64,Standing Hip Abduction
+Female,Middle-aged,5.0,0.0,-0.55,-1.11,1.8,-0.0,Band Shoulder Abduction
+Female,Middle-aged,2.0,1.0,-0.54,-2.53,0.73,-0.52,Modified Plank
+Female,Middle-aged,3.0,1.0,1.64,1.33,1.07,0.58,Cross-Body Arm Stretch
+Female,Middle-aged,3.0,0.0,-0.52,-0.53,0.99,-0.0,Cross-Body Arm Stretch
+Female,Middle-aged,7.0,1.0,1.07,-0.37,2.25,0.52,Band Shoulder Abduction
+Female,Middle-aged,9.0,1.0,-2.95,-3.07,-3.22,-0.57,Band Shoulder Abduction
+Female,Middle-aged,9.0,5.0,3.71,3.02,3.43,2.43,Band Shoulder Abduction
+Female,Middle-aged,0.0,4.0,4.37,1.67,-0.0,2.34,Standing Hip Abduction
+Female,Middle-aged,4.0,5.0,1.08,1.62,1.38,2.41,Standing Hip Abduction
+Female,Middle-aged,7.0,1.0,0.81,-0.19,2.51,0.56,Band Shoulder Abduction
+Female,Middle-aged,8.0,1.0,1.9,1.11,2.9,0.54,Band Shoulder Abduction
+Female,Middle-aged,3.0,3.0,0.84,2.12,1.01,1.53,Standing Hip Abduction
+Female,Middle-aged,5.0,0.0,1.97,1.13,1.88,-0.0,Band Shoulder Abduction
+Female,Middle-aged,2.0,2.0,-2.1,-2.22,0.71,-0.97,Modified Plank
+Female,Middle-aged,2.0,2.0,1.74,1.9,0.7,1.05,Modified Plank
+Female,Senior,5.0,2.0,3.01,1.05,1.87,-1.1,Seated Shoulder Raise
+Female,Senior,2.0,1.0,2.37,2.05,0.75,-0.5,Seated Marching
+Female,Senior,6.0,5.0,2.42,0.81,2.37,2.78,Seated Shoulder Raise
+Female,Senior,4.0,1.0,-2.33,,-1.41,-0.6,Wall Push-up
+Female,Senior,3.0,1.0,2.43,0.56,-1.15,-0.55,Wall Push-up
+Female,Senior,2.0,3.0,0.27,-3.23,0.78,-1.77,Seated Figure-Four Stretch
+Female,Senior,4.0,1.0,1.02,-1.21,1.41,-0.55,Wall Push-up
+Female,Senior,1.0,3.0,1.3,-1.1,0.36,-1.68,Seated Figure-Four Stretch
+Female,Senior,2.0,1.0,1.61,1.28,0.73,0.51,Diaphragmatic Breathing
+Female,Senior,9.0,1.0,2.29,1.42,3.18,-0.55,Seated Shoulder Raise
+Female,Senior,2.0,4.0,3.18,-0.38,-0.73,2.29,Seated Figure-Four Stretch
+Female,Senior,0.0,1.0,0.0,0.0,-0.0,0.5,Seated Marches
+Female,Senior,0.0,0.0,4.46,0.39,-0.0,-0.0,Seated Marching
+Female,Senior,1.0,5.0,5.41,2.05,0.38,2.73,Seated Figure-Four Stretch
+Female,Senior,1.0,2.0,0.85,,0.37,1.03,Seated Marches
+Female,Senior,0.0,2.0,1.43,0.58,-0.0,1.04,Seated Marches
+Female,Senior,4.0,1.0,0.0,-0.61,-1.46,0.64,Wall Push-up
+Female,Senior,5.0,0.0,-0.58,-3.32,-1.87,-0.0,Seated Shoulder Raise
+Female,Senior,4.0,1.0,2.48,0.55,1.38,0.51,Wall Push-up
+Female,Senior,1.0,2.0,-0.57,-0.97,-0.36,-1.16,Seated Marches
+Female,Senior,1.0,2.0,0.0,0.39,-0.38,1.05,Seated Marches
+Female,Senior,2.0,0.0,-2.85,-2.57,-0.73,-0.0,Seated Marching
+Female,Senior,7.0,0.0,-1.4,-1.74,-2.43,-0.0,Seated Shoulder Raise
+Female,Senior,4.0,1.0,3.63,-0.41,1.58,0.6,Wall Push-up
+Female,Senior,2.0,5.0,1.18,0.2,0.77,2.56,Seated Figure-Four Stretch
+Female,Senior,1.0,0.0,0.26,-1.27,-0.38,-0.0,Diaphragmatic Breathing
+Female,Senior,0.0,2.0,0.28,-0.38,-0.0,1.03,Seated Marches
+Female,Senior,0.0,2.0,0.0,-1.81,-0.0,1.15,Seated Marches
+Female,Senior,7.0,0.0,-1.73,-3.38,-2.67,-0.0,Seated Shoulder Raise
+Female,Senior,0.0,0.0,-3.27,-1.54,-0.0,-0.0,Seated Marching
+Female,Senior,0.0,0.0,3.41,1.81,-0.0,-0.0,Seated Marching
+Female,Senior,5.0,2.0,2.68,1.3,1.95,1.02,Seated Shoulder Raise
+Female,Senior,5.0,4.0,1.94,,-1.88,-2.22,Seated Shoulder Raise
+Female,Senior,7.0,1.0,-0.25,-1.22,2.36,0.46,Seated Shoulder Raise
+Female,Senior,6.0,3.0,5.05,2.03,2.35,1.58,Seated Shoulder Raise
+Female,Senior,1.0,4.0,1.22,-0.21,0.38,2.25,Seated Figure-Four Stretch
+Female,Senior,2.0,0.0,1.81,0.54,-0.7,-0.0,Wall Push-up
+Female,Senior,5.0,1.0,3.09,0.58,1.82,0.54,Seated Shoulder Raise
+Female,Senior,3.0,1.0,0.28,0.76,1.07,0.5,Wall Push-up
+Female,Senior,1.0,2.0,-1.86,-0.93,-0.34,-0.99,Seated Marches
+Female,Senior,1.0,1.0,0.0,-0.76,-0.4,-0.52,Seated Marches
+Female,Senior,1.0,0.0,-6.0,-3.84,-0.34,-0.0,Seated Marching
+Female,Senior,2.0,5.0,0.27,-1.09,-0.71,2.53,Seated Figure-Four Stretch
+Female,Senior,5.0,1.0,0.57,2.29,1.75,0.51,Seated Shoulder Raise
+Female,Senior,8.0,0.0,-0.79,0.74,2.9,-0.0,Seated Shoulder Raise
+Female,Senior,4.0,3.0,1.84,0.4,1.58,1.61,Wall Push-up
+Female,Senior,2.0,1.0,1.19,-0.4,0.68,0.53,Wall Push-up
+Female,Senior,8.0,5.0,2.29,1.57,3.05,2.65,Seated Shoulder Raise
+Female,Senior,5.0,5.0,4.91,1.78,1.85,2.58,Seated Figure-Four Stretch
+Female,Senior,1.0,1.0,0.55,0.94,0.36,0.55,Seated Marches
+Female,Senior,0.0,4.0,0.6,1.6,-0.0,2.16,Seated Figure-Four Stretch
+Female,Senior,0.0,3.0,0.29,1.59,-0.0,1.75,Seated Figure-Four Stretch
+Female,Senior,5.0,1.0,-0.55,-1.14,-1.84,0.55,Seated Shoulder Raise
+Female,Senior,3.0,3.0,0.58,0.98,-1.15,1.56,Seated Marches
+Female,Senior,3.0,1.0,2.19,0.95,1.19,0.54,Wall Push-up
+Female,Senior,5.0,0.0,2.82,1.42,1.68,-0.0,Seated Shoulder Raise
+Female,Senior,3.0,1.0,1.53,1.42,1.14,-0.51,Wall Push-up
+Female,Senior,0.0,4.0,1.78,0.61,-0.0,2.2,Seated Figure-Four Stretch
+Female,Senior,8.0,3.0,4.44,2.48,2.81,1.52,Seated Shoulder Raise
+Female,Senior,6.0,0.0,-0.53,-1.11,-2.17,-0.0,Seated Shoulder Raise
+Female,Senior,6.0,5.0,1.95,1.9,2.15,2.58,Seated Shoulder Raise
+Female,Senior,4.0,1.0,2.69,2.37,1.62,0.56,Seated Shoulder Raise
+Female,Senior,1.0,3.0,2.1,1.43,0.35,1.62,Seated Figure-Four Stretch
+Female,Senior,8.0,1.0,4.44,3.66,3.34,0.53,Seated Shoulder Raise
+Female,Senior,6.0,2.0,-0.28,-2.52,-2.28,0.98,Seated Shoulder Raise
+Female,Senior,7.0,2.0,3.4,2.1,2.69,1.0,Seated Shoulder Raise
+Female,Senior,2.0,3.0,2.83,0.76,0.75,1.56,Seated Marches
+Female,Senior,2.0,3.0,1.71,0.61,-0.73,1.47,Seated Marches
+Female,Senior,7.0,0.0,0.79,0.18,2.46,-0.0,Seated Shoulder Raise
+Female,Senior,6.0,3.0,-3.68,-2.55,-2.22,1.61,Seated Shoulder Raise
+Female,Senior,6.0,7.0,2.25,1.15,2.1,3.61,Seated Figure-Four Stretch
+Female,Senior,2.0,0.0,1.65,1.31,0.74,-0.0,Diaphragmatic Breathing
+Female,Senior,6.0,3.0,-2.73,-3.09,-2.29,1.47,Seated Shoulder Raise
+Female,Senior,4.0,1.0,1.05,1.44,-1.44,0.5,Wall Push-up
+Female,Senior,1.0,1.0,0.28,0.57,0.34,0.49,Seated Marches
+Female,Senior,11.0,6.0,2.37,2.56,4.37,2.73,Seated Shoulder Raise
+Female,Senior,4.0,1.0,-2.88,-0.63,-1.5,0.55,Wall Push-up
+Female,Senior,1.0,2.0,-1.4,1.59,0.37,1.16,Seated Marches
+Male,Teen,3.0,1.0,-4.0,-3.21,1.04,-0.49,Bird Dog
+Male,Teen,4.0,2.0,-2.04,-2.61,-1.53,-1.15,Wall Angel
+Male,Teen,1.0,4.0,1.15,0.58,-0.38,2.1,Glute Bridge
+Male,Teen,7.0,1.0,-2.0,-3.14,-2.95,0.58,Wall Angel
+Male,Teen,2.0,0.0,1.14,1.78,0.62,-0.0,Bird Dog
+Male,Teen,2.0,1.0,-1.68,0.0,0.72,-0.52,Wall Angel
+Male,Teen,2.0,1.0,-0.22,1.09,-0.66,-0.48,Wall Angel
+Male,Teen,1.0,2.0,-2.41,-3.43,0.36,-1.15,Bird Dog
+Male,Teen,1.0,1.0,0.95,1.64,-0.29,0.52,Bird Dog
+Male,Teen,2.0,0.0,-0.98,-3.47,-0.71,-0.0,Bird Dog
+Male,Teen,4.0,3.0,-2.17,-3.26,1.97,2.49,Wall Angel
+Male,Teen,1.0,2.0,0.63,0.42,0.38,1.27,Glute Bridge
+Male,Teen,7.0,0.0,-0.88,-2.04,-2.33,-0.0,Wall Angel
+Male,Teen,6.0,2.0,0.73,0.17,-2.11,-1.06,Wall Angel
+Male,Teen,1.0,1.0,1.64,-0.48,-0.34,-0.53,Bird Dog
+Male,Teen,3.0,1.0,0.95,-0.33,-1.06,0.55,Wall Angel
+Male,Teen,0.0,0.0,0.99,-0.22,-0.0,-0.0,Bird Dog
+Male,Teen,2.0,1.0,-4.93,-3.47,-0.72,-0.62,Bird Dog
+Male,Teen,5.0,3.0,-2.94,-2.38,-1.87,1.52,Wall Angel
+Male,Teen,1.0,1.0,1.49,0.2,0.34,0.57,Bird Dog
+Male,Teen,3.0,2.0,-0.64,0.85,-1.17,-1.01,Wall Angel
+Male,Teen,1.0,0.0,-2.79,-2.13,-0.35,-0.0,Bird Dog
+Male,Teen,4.0,3.0,-0.92,-2.61,-1.47,-1.83,Wall Angel
+Male,Teen,3.0,1.0,0.76,1.05,1.06,-0.54,Wall Angel
+Male,Teen,1.0,0.0,0.48,-0.65,-0.32,-0.0,Resistance Band Shoulder Squeeze
+Male,Teen,2.0,2.0,-0.86,-2.17,-0.68,1.02,Bird Dog
+Male,Teen,1.0,2.0,-0.26,0.89,0.35,-1.09,Glute Bridge
+Male,Teen,6.0,1.0,-1.05,-1.94,-1.99,-0.51,Wall Angel
+Male,Teen,0.0,3.0,0.58,1.16,-0.0,-1.59,Glute Bridge
+Male,Teen,0.0,0.0,0.9,-0.83,-0.0,-0.0,Bird Dog
+Male,Teen,0.0,2.0,1.52,1.82,-0.0,1.11,Bird Dog
+Male,Teen,2.0,2.0,-5.62,-5.14,-0.76,1.23,Bird Dog
+Male,Teen,5.0,2.0,0.0,1.16,-1.9,-1.19,Wall Angel
+Male,Teen,7.0,2.0,-0.51,-0.36,2.1,-1.11,Wall Angel
+Male,Teen,7.0,2.0,0.68,0.31,-2.28,1.07,Wall Angel
+Male,Teen,2.0,0.0,-0.48,-0.33,-0.73,-0.0,Wall Angel
+Male,Teen,4.0,0.0,1.98,0.4,1.44,-0.0,Wall Angel
+Male,Teen,2.0,0.0,-0.62,-2.31,-0.87,-0.0,Bird Dog
+Male,Teen,7.0,1.0,2.68,0.78,2.29,0.53,Wall Angel
+Male,Teen,4.0,3.0,-0.74,-1.35,1.4,1.65,Wall Angel
+Male,Teen,0.0,3.0,0.29,-1.23,-0.0,1.46,Glute Bridge
+Male,Teen,0.0,0.0,1.01,-1.05,-0.0,-0.0,Bird Dog
+Male,Teen,1.0,1.0,0.0,-1.42,0.42,0.58,Side-lying Leg Lift
+Male,Teen,3.0,3.0,0.0,-0.89,1.06,1.68,Glute Bridge
+Male,Teen,4.0,4.0,-1.25,-1.59,1.47,-2.08,Glute Bridge
+Male,Teen,3.0,2.0,-1.75,-3.37,-1.32,1.26,Bird Dog
+Male,Teen,3.0,1.0,-0.64,-2.38,-1.18,0.6,Wall Angel
+Male,Teen,0.0,4.0,0.24,-1.19,-0.0,2.14,Glute Bridge
+Male,Teen,4.0,2.0,-1.42,-0.38,1.41,1.26,Wall Angel
+Male,Teen,5.0,1.0,1.32,-0.31,1.67,0.48,Wall Angel
+Male,Teen,4.0,2.0,2.99,1.13,1.42,1.06,Wall Angel
+Male,Teen,1.0,2.0,1.37,0.16,-0.34,1.06,Side-lying Leg Lift
+Male,Teen,8.0,2.0,0.24,-0.34,2.48,-1.06,Wall Angel
+Male,Teen,3.0,2.0,1.01,1.39,0.99,-1.13,Wall Angel
+Male,Teen,7.0,1.0,1.59,1.06,-2.44,-0.55,Wall Angel
+Male,Teen,8.0,1.0,0.88,0.39,-2.81,-0.59,Wall Angel
+Male,Teen,2.0,1.0,1.77,-0.5,-0.67,-0.47,Wall Angel
+Male,Teen,3.0,0.0,-1.33,-1.81,1.11,-0.0,Wall Angel
+Male,Teen,2.0,0.0,-7.01,-4.1,-0.79,-0.0,Bird Dog
+Male,Teen,2.0,2.0,-1.51,-1.51,0.58,-1.0,Bird Dog
+Male,Teen,1.0,0.0,-0.27,-0.36,0.36,-0.0,Resistance Band Shoulder Squeeze
+Male,Teen,4.0,0.0,-0.24,-0.68,1.38,-0.0,Wall Angel
+Male,Teen,3.0,0.0,0.29,0.0,-1.23,-0.0,Wall Angel
+Male,Teen,0.0,2.0,0.0,-0.69,-0.0,1.05,Side-lying Leg Lift
+Male,Teen,4.0,0.0,-2.47,-1.49,-1.35,-0.0,Wall Angel
+Male,Teen,0.0,3.0,0.7,-0.49,-0.0,-1.55,Glute Bridge
+Male,Teen,3.0,0.0,-0.83,-0.36,-1.05,-0.0,Wall Angel
+Male,Teen,0.0,2.0,-1.64,-1.8,-0.0,1.01,Bird Dog
+Male,Teen,0.0,2.0,-0.24,0.17,-0.0,-1.05,Side-lying Leg Lift
+Male,Teen,1.0,2.0,0.61,0.21,0.38,1.02,Side-lying Leg Lift
+Male,Teen,6.0,0.0,-0.24,-1.54,2.07,-0.0,Wall Angel
+Male,Young Adult,3.0,1.0,-0.94,-1.93,-1.0,0.49,Resistance Band Arm Stretch
+Male,Young Adult,3.0,1.0,0.48,-2.31,-1.04,-0.56,Resistance Band Arm Stretch
+Male,Young Adult,4.0,2.0,-0.22,-1.21,-1.31,0.99,Resistance Band Arm Stretch
+Male,Young Adult,0.0,1.0,-0.73,-1.49,-0.0,-0.48,Plank
+Male,Young Adult,5.0,1.0,-0.43,-0.91,1.71,0.49,Shoulder Press
+Male,Young Adult,6.0,2.0,0.21,-2.25,-2.15,0.92,Shoulder Press
+Male,Young Adult,4.0,0.0,-0.24,1.3,1.36,-0.0,Resistance Band Arm Stretch
+Male,Young Adult,4.0,1.0,-0.79,-2.61,-1.29,-0.56,Resistance Band Arm Stretch
+Male,Young Adult,5.0,1.0,-2.05,-2.99,-1.75,-0.41,Shoulder Press
+Male,Young Adult,1.0,3.0,-2.77,-2.84,0.34,-1.64,Plank
+Male,Young Adult,4.0,2.0,-0.22,0.47,1.29,1.02,Resistance Band Arm Stretch
+Male,Young Adult,2.0,1.0,0.43,0.15,-0.64,-0.45,Resistance Band Arm Stretch
+Male,Young Adult,7.0,0.0,-1.39,-1.86,-2.3,-0.0,Shoulder Press
+Male,Young Adult,5.0,0.0,-0.25,-1.18,1.67,-0.0,Shoulder Press
+Male,Young Adult,2.0,2.0,-0.23,-1.57,0.67,-1.01,Clamshell
+Male,Young Adult,3.0,3.0,0.48,-0.48,0.98,1.44,Clamshell
+Male,Young Adult,2.0,1.0,0.75,-0.49,0.69,-0.53,Resistance Band Arm Stretch
+Male,Young Adult,4.0,2.0,-1.62,-0.63,1.21,-1.02,Resistance Band Arm Stretch
+Male,Young Adult,6.0,2.0,-2.04,-2.85,-1.71,-0.96,Shoulder Press
+Male,Young Adult,1.0,1.0,-0.9,-1.88,-0.33,0.47,Plank
+Male,Young Adult,5.0,2.0,0.5,-0.16,-1.49,0.99,Shoulder Press
+Male,Young Adult,1.0,1.0,-0.88,-1.73,0.31,-0.46,Plank
+Male,Young Adult,2.0,2.0,-2.19,-3.38,-0.69,0.93,Plank
+Male,Young Adult,0.0,2.0,-1.84,-1.41,-0.0,-0.94,Plank
+Male,Young Adult,0.0,2.0,0.5,0.5,-0.0,-1.03,Clamshell
+Male,Young Adult,1.0,2.0,1.21,-0.49,0.34,1.07,Clamshell
+Male,Young Adult,1.0,1.0,-1.69,-2.28,0.33,-0.52,Plank
+Male,Young Adult,4.0,1.0,-0.23,-0.63,1.22,0.49,Resistance Band Arm Stretch
+Male,Young Adult,10.0,2.0,0.24,0.65,3.01,-1.06,Shoulder Press
+Male,Young Adult,7.0,0.0,2.03,-0.17,2.44,-0.0,Shoulder Press
+Male,Young Adult,3.0,1.0,-0.25,-0.86,-1.08,0.51,Resistance Band Arm Stretch
+Male,Young Adult,6.0,4.0,2.41,1.9,1.89,1.99,Shoulder Press
+Male,Young Adult,2.0,0.0,1.35,0.94,0.62,-0.0,Resistance Band Arm Stretch
+Male,Young Adult,4.0,3.0,1.45,-0.5,-1.27,1.46,Resistance Band Arm Stretch
+Male,Young Adult,3.0,1.0,-0.71,0.0,0.95,-0.53,Resistance Band Arm Stretch
+Male,Young Adult,2.0,0.0,-1.05,-1.51,0.65,-0.0,Resistance Band Arm Stretch
+Male,Young Adult,3.0,2.0,0.0,-0.33,0.94,-1.02,Resistance Band Arm Stretch
+Male,Young Adult,3.0,1.0,-0.26,-0.18,-0.91,0.47,Resistance Band Arm Stretch
+Male,Young Adult,8.0,1.0,1.43,-0.65,2.36,-0.53,Shoulder Press
+Male,Young Adult,4.0,1.0,-0.45,-0.46,1.33,0.53,Resistance Band Arm Stretch
+Male,Young Adult,5.0,2.0,-0.22,-0.31,1.57,-0.94,Shoulder Press
+Male,Young Adult,4.0,1.0,-0.75,-0.5,1.22,0.53,Resistance Band Arm Stretch
+Male,Young Adult,5.0,2.0,0.74,-0.83,1.64,1.01,Shoulder Press
+Male,Young Adult,7.0,2.0,2.58,1.22,1.97,1.01,Shoulder Press
+Male,Young Adult,1.0,3.0,2.74,1.02,0.36,1.64,Clamshell
+Male,Young Adult,1.0,0.0,2.4,1.09,-0.39,-0.0,Plank
+Male,Young Adult,5.0,0.0,0.95,-0.97,1.62,-0.0,Shoulder Press
+Male,Young Adult,5.0,1.0,0.0,-0.16,1.63,0.46,Shoulder Press
+Male,Young Adult,1.0,1.0,-0.24,-0.97,0.33,0.47,Standing Hip Abduction
+Male,Young Adult,2.0,1.0,-1.14,-0.78,-0.63,0.55,Resistance Band Arm Stretch
+Male,Young Adult,3.0,3.0,0.72,0.0,0.96,1.59,Clamshell
+Male,Young Adult,9.0,0.0,0.44,-0.91,2.73,-0.0,Shoulder Press
+Male,Young Adult,0.0,1.0,1.97,0.67,-0.0,0.51,Plank
+Male,Young Adult,4.0,4.0,2.4,0.0,-1.16,-1.64,Clamshell
+Male,Young Adult,1.0,0.0,-0.77,-2.02,-0.33,-0.0,Plank
+Male,Young Adult,1.0,1.0,0.23,-0.96,0.36,-0.58,Clamshell
+Male,Young Adult,6.0,2.0,3.25,0.68,2.07,1.09,Shoulder Press
+Male,Young Adult,4.0,4.0,-0.48,-0.68,1.33,2.08,Clamshell
+Male,Young Adult,2.0,2.0,0.49,0.33,-0.62,1.04,Clamshell
+Male,Young Adult,8.0,2.0,2.5,1.41,2.69,1.0,Shoulder Press
+Male,Young Adult,0.0,1.0,-1.9,-1.5,-0.0,-0.54,Plank
+Male,Young Adult,3.0,4.0,-2.13,-2.76,-0.86,-1.94,Clamshell
+Male,Young Adult,2.0,3.0,-1.18,-1.52,-0.65,-1.52,Clamshell
+Male,Young Adult,2.0,0.0,0.51,0.68,0.63,-0.0,Resistance Band Arm Stretch
+Male,Young Adult,8.0,3.0,0.63,-0.15,2.57,-1.46,Shoulder Press
+Male,Young Adult,6.0,0.0,1.23,0.0,1.84,-0.0,Shoulder Press
+Male,Young Adult,0.0,0.0,2.19,-0.33,-0.0,-0.0,Plank
+Male,Young Adult,1.0,1.0,-0.45,-2.4,-0.31,0.47,Plank
+Male,Young Adult,3.0,1.0,0.27,-0.37,-0.98,0.55,Resistance Band Arm Stretch
+Male,Young Adult,8.0,2.0,1.32,0.63,2.37,-0.95,Shoulder Press
+Male,Young Adult,4.0,1.0,0.0,-0.64,1.29,0.47,Resistance Band Arm Stretch
+Male,Young Adult,3.0,2.0,-0.48,0.49,0.95,1.06,Resistance Band Arm Stretch
+Male,Young Adult,4.0,3.0,-0.65,-0.16,1.26,-1.59,Resistance Band Arm Stretch
+Male,Young Adult,1.0,1.0,-0.23,-1.4,-0.32,0.52,Plank
+Male,Young Adult,6.0,0.0,1.21,-0.33,2.01,-0.0,Shoulder Press
+Male,Young Adult,5.0,1.0,0.67,-0.63,1.71,0.49,Shoulder Press
+Male,Middle-aged,11.0,0.0,0.47,0.65,3.28,-0.0,Band Shoulder Abduction
+Male,Middle-aged,4.0,3.0,0.0,-1.36,1.25,-1.47,Cross-Body Arm Stretch
+Male,Middle-aged,4.0,2.0,1.76,,1.29,1.05,Cross-Body Arm Stretch
+Male,Middle-aged,11.0,3.0,-0.22,-0.63,3.09,-1.33,Band Shoulder Abduction
+Male,Middle-aged,8.0,1.0,0.51,-1.73,2.86,0.53,Band Shoulder Abduction
+Male,Middle-aged,5.0,1.0,-1.05,-1.38,-1.63,-0.55,Cross-Body Arm Stretch
+Male,Middle-aged,7.0,1.0,-1.42,-2.78,-2.34,-0.52,Band Shoulder Abduction
+Male,Middle-aged,7.0,3.0,-2.53,-3.22,-2.4,-1.4,Band Shoulder Abduction
+Male,Middle-aged,2.0,5.0,1.62,0.14,0.64,2.15,Standing Hip Abduction
+Male,Middle-aged,2.0,0.0,1.09,1.4,0.67,-0.0,Cross-Body Arm Stretch
+Male,Middle-aged,4.0,2.0,0.41,0.45,1.12,0.9,Cross-Body Arm Stretch
+Male,Middle-aged,7.0,3.0,-1.92,-2.22,-2.04,-1.42,Band Shoulder Abduction
+Male,Middle-aged,0.0,2.0,1.21,-0.34,-0.0,1.01,Seated Marches
+Male,Middle-aged,0.0,1.0,-0.23,-1.46,-0.0,0.53,Modified Plank
+Male,Middle-aged,3.0,0.0,-0.75,-1.76,1.04,-0.0,Cross-Body Arm Stretch
+Male,Middle-aged,2.0,2.0,-0.97,-0.17,-0.66,1.01,Seated Marches
+Male,Middle-aged,3.0,3.0,-1.4,-2.44,1.03,-1.53,Standing Hip Abduction
+Male,Middle-aged,0.0,2.0,1.22,0.0,-0.0,-1.11,Standing Hip Abduction
+Male,Middle-aged,1.0,1.0,-1.84,0.0,-0.33,-0.6,Modified Plank
+Male,Middle-aged,2.0,1.0,-0.44,-1.08,-0.59,-0.47,Cross-Body Arm Stretch
+Male,Middle-aged,4.0,2.0,-2.68,-0.47,-1.29,1.1,Cross-Body Arm Stretch
+Male,Middle-aged,4.0,3.0,-1.48,-1.88,1.32,-1.48,Cross-Body Arm Stretch
+Male,Middle-aged,14.0,1.0,-0.44,2.01,3.87,0.49,Band Shoulder Abduction
+Male,Middle-aged,4.0,1.0,-0.45,-1.87,-1.29,-0.45,Cross-Body Arm Stretch
+Male,Middle-aged,6.0,3.0,0.0,1.0,1.85,1.46,Band Shoulder Abduction
+Male,Middle-aged,13.0,1.0,-0.7,0.48,4.04,-0.53,Band Shoulder Abduction
+Male,Middle-aged,10.0,1.0,3.83,1.83,3.2,0.51,Band Shoulder Abduction
+Male,Middle-aged,8.0,1.0,0.49,-0.67,2.28,-0.49,Band Shoulder Abduction
+Male,Middle-aged,5.0,2.0,-2.22,-3.5,-1.62,1.09,Cross-Body Arm Stretch
+Male,Middle-aged,8.0,1.0,1.41,1.14,2.66,0.52,Band Shoulder Abduction
+Male,Middle-aged,2.0,3.0,-0.27,0.72,-0.65,1.55,Standing Hip Abduction
+Male,Middle-aged,3.0,2.0,0.78,-1.07,1.04,1.12,Cross-Body Arm Stretch
+Male,Middle-aged,1.0,1.0,-1.56,,0.31,-0.52,Seated Marches
+Male,Middle-aged,3.0,1.0,2.23,1.01,0.99,0.54,Cross-Body Arm Stretch
+Male,Middle-aged,4.0,0.0,-0.44,-0.31,-1.28,-0.0,Cross-Body Arm Stretch
+Male,Middle-aged,4.0,2.0,-0.73,-2.94,-1.29,0.99,Cross-Body Arm Stretch
+Male,Middle-aged,3.0,3.0,-0.25,-0.69,0.98,1.61,Standing Hip Abduction
+Male,Middle-aged,15.0,1.0,1.17,0.33,4.74,-0.49,Band Shoulder Abduction
+Male,Middle-aged,5.0,1.0,3.11,2.01,1.67,0.51,Cross-Body Arm Stretch
+Male,Middle-aged,8.0,0.0,0.98,-0.17,2.65,-0.0,Band Shoulder Abduction
+Male,Middle-aged,7.0,2.0,1.28,0.53,2.46,-1.19,Band Shoulder Abduction
+Male,Middle-aged,11.0,0.0,1.73,,3.79,-0.0,Band Shoulder Abduction
+Male,Middle-aged,3.0,2.0,1.56,0.0,1.04,-1.22,Cross-Body Arm Stretch
+Male,Middle-aged,3.0,2.0,0.5,,1.01,1.08,Cross-Body Arm Stretch
+Male,Middle-aged,7.0,2.0,4.87,2.81,2.44,1.15,Band Shoulder Abduction
+Male,Middle-aged,10.0,4.0,2.5,1.5,3.6,2.18,Band Shoulder Abduction
+Male,Middle-aged,11.0,0.0,1.44,0.95,3.81,-0.0,Band Shoulder Abduction
+Male,Middle-aged,6.0,0.0,-0.91,-1.72,-1.9,-0.0,Band Shoulder Abduction
+Male,Middle-aged,5.0,1.0,0.7,-0.49,1.62,0.51,Cross-Body Arm Stretch
+Male,Middle-aged,3.0,2.0,0.95,0.33,1.04,1.03,Cross-Body Arm Stretch
+Male,Middle-aged,3.0,1.0,3.03,1.1,-0.97,-0.48,Modified Plank
+Male,Middle-aged,0.0,1.0,1.39,0.67,-0.0,0.46,Modified Plank
+Male,Middle-aged,0.0,2.0,-0.23,-0.32,-0.0,1.03,Standing Hip Abduction
+Male,Middle-aged,7.0,0.0,2.89,2.7,2.19,-0.0,Band Shoulder Abduction
+Male,Middle-aged,5.0,1.0,0.77,-0.34,1.78,-0.58,Cross-Body Arm Stretch
+Male,Middle-aged,4.0,3.0,2.17,0.93,1.38,1.51,Cross-Body Arm Stretch
+Male,Middle-aged,0.0,3.0,-0.7,-1.92,-0.0,1.64,Standing Hip Abduction
+Male,Middle-aged,3.0,2.0,0.68,0.78,1.04,1.1,Cross-Body Arm Stretch
+Male,Middle-aged,7.0,0.0,-1.27,-0.87,-2.19,-0.0,Band Shoulder Abduction
+Male,Middle-aged,7.0,1.0,-1.16,-1.57,2.23,-0.49,Band Shoulder Abduction
+Male,Middle-aged,5.0,2.0,0.49,-1.84,-1.64,1.09,Cross-Body Arm Stretch
+Male,Middle-aged,1.0,1.0,0.79,-0.37,-0.36,0.5,Seated Marches
+Male,Middle-aged,2.0,2.0,2.66,-1.54,0.64,1.01,Modified Plank
+Male,Middle-aged,0.0,1.0,1.18,1.83,-0.0,-0.56,Modified Plank
+Male,Middle-aged,4.0,2.0,2.45,0.86,1.42,1.11,Cross-Body Arm Stretch
+Male,Middle-aged,1.0,2.0,-1.23,-0.34,-0.33,-1.01,Seated Marches
+Male,Middle-aged,10.0,1.0,0.0,0.88,3.22,0.56,Band Shoulder Abduction
+Male,Middle-aged,4.0,3.0,0.74,0.34,1.18,-1.62,Cross-Body Arm Stretch
+Male,Middle-aged,0.0,2.0,-1.23,-2.96,-0.0,-0.97,Modified Plank
+Male,Middle-aged,4.0,2.0,1.01,0.52,1.31,0.99,Cross-Body Arm Stretch
+Male,Middle-aged,2.0,0.0,-1.44,-0.93,0.65,-0.0,Cross-Body Arm Stretch
+Male,Middle-aged,5.0,0.0,-1.0,-0.88,-1.67,-0.0,Cross-Body Arm Stretch
+Male,Senior,4.0,1.0,0.0,-1.26,1.32,-0.56,Wall Push-up
+Male,Senior,1.0,2.0,0.74,1.01,-0.34,1.06,Seated Figure-Four Stretch
+Male,Senior,4.0,2.0,-1.21,-0.34,1.2,0.99,Wall Push-up
+Male,Senior,2.0,3.0,0.26,,0.7,-1.75,Seated Figure-Four Stretch
+Male,Senior,10.0,0.0,2.56,1.06,3.45,-0.0,Seated Shoulder Raise
+Male,Senior,13.0,0.0,2.58,2.56,4.35,-0.0,Seated Shoulder Raise
+Male,Senior,2.0,1.0,3.61,0.52,0.67,0.53,Seated Marching
+Male,Senior,1.0,0.0,0.0,-1.89,0.33,-0.0,Seated Marching
+Male,Senior,3.0,1.0,-2.94,-2.33,-0.97,-0.56,Seated Marching
+Male,Senior,4.0,1.0,1.47,1.38,1.25,0.49,Wall Push-up
+Male,Senior,8.0,1.0,1.86,2.35,2.69,-0.52,Seated Shoulder Raise
+Male,Senior,6.0,3.0,1.81,-0.89,2.08,1.61,Seated Shoulder Raise
+Male,Senior,1.0,1.0,0.0,-1.29,-0.34,-0.53,Seated Marches
+Male,Senior,9.0,4.0,2.14,1.77,3.03,2.1,Seated Shoulder Raise
+Male,Senior,3.0,0.0,-1.71,-3.47,1.04,-0.0,Seated Marching
+Male,Senior,1.0,0.0,-0.23,-1.8,0.31,-0.0,Seated Marching
+Male,Senior,3.0,1.0,-3.38,-2.36,-0.96,-0.53,Seated Marching
+Male,Senior,3.0,2.0,0.26,-0.89,-1.01,1.08,Wall Push-up
+Male,Senior,3.0,2.0,1.29,0.7,1.05,1.16,Wall Push-up
+Male,Senior,6.0,1.0,3.06,0.92,1.97,0.54,Wall Push-up
+Male,Senior,2.0,1.0,0.0,-1.34,0.7,-0.5,Wall Push-up
+Male,Senior,1.0,1.0,3.59,1.52,0.35,0.49,Seated Marching
+Male,Senior,9.0,0.0,0.24,-1.49,-3.2,-0.0,Seated Shoulder Raise
+Male,Senior,10.0,5.0,3.04,1.37,3.67,2.58,Seated Shoulder Raise
+Male,Senior,1.0,2.0,2.7,2.99,0.35,1.03,Seated Marching
+Male,Senior,4.0,1.0,-0.25,-1.86,1.33,-0.53,Wall Push-up
+Male,Senior,7.0,2.0,-2.12,-1.7,2.4,-1.01,Seated Shoulder Raise
+Male,Senior,9.0,2.0,-0.49,-1.69,-3.08,-1.01,Seated Shoulder Raise
+Male,Senior,5.0,3.0,-2.85,-2.3,1.76,-1.74,Wall Push-up
+Male,Senior,2.0,3.0,-0.48,-1.33,0.65,1.56,Seated Figure-Four Stretch
+Male,Senior,5.0,1.0,-1.79,-3.81,-1.95,0.58,Wall Push-up
+Male,Senior,1.0,1.0,0.94,0.0,0.33,-0.51,Seated Marches
+Male,Senior,3.0,1.0,0.76,-2.13,-1.09,0.53,Wall Push-up
+Male,Senior,3.0,3.0,0.8,-0.18,-1.09,-1.61,Seated Figure-Four Stretch
+Male,Senior,8.0,1.0,-0.23,0.16,2.78,0.52,Seated Shoulder Raise
+Male,Senior,3.0,5.0,2.13,0.0,-1.01,2.73,Seated Figure-Four Stretch
+Male,Senior,3.0,0.0,2.14,0.72,1.07,-0.0,Wall Push-up
+Male,Senior,2.0,2.0,2.07,1.61,0.72,0.98,Seated Marching
+Male,Senior,12.0,2.0,2.52,0.52,3.97,-1.07,Seated Shoulder Raise
+Male,Senior,6.0,2.0,2.75,0.18,2.12,1.07,Seated Shoulder Raise
+Male,Senior,1.0,2.0,-0.97,-2.02,-0.36,1.08,Seated Figure-Four Stretch
+Male,Senior,8.0,0.0,1.98,1.37,2.57,-0.0,Seated Shoulder Raise
+Male,Senior,13.0,1.0,1.26,1.69,4.53,0.52,Seated Shoulder Raise
+Male,Senior,5.0,1.0,3.32,1.93,1.7,0.52,Wall Push-up
+Male,Senior,5.0,0.0,-1.17,-1.83,-1.74,-0.0,Wall Push-up
+Male,Senior,5.0,1.0,0.71,-1.04,1.6,0.49,Wall Push-up
+Male,Senior,4.0,1.0,-1.43,-2.66,1.37,-0.54,Wall Push-up
+Male,Senior,8.0,1.0,-0.27,-0.37,2.9,-0.6,Seated Shoulder Raise
+Male,Senior,2.0,0.0,0.76,0.0,0.65,-0.0,Wall Push-up
+Male,Senior,0.0,1.0,0.78,0.35,-0.0,0.53,Seated Marches
+Male,Senior,3.0,2.0,-0.52,-0.35,1.13,-1.05,Wall Push-up
+Male,Senior,1.0,2.0,0.99,1.39,0.34,1.06,Seated Figure-Four Stretch
+Male,Senior,11.0,3.0,1.53,1.07,3.46,1.52,Seated Shoulder Raise
+Male,Senior,1.0,4.0,1.23,0.34,0.35,2.14,Seated Figure-Four Stretch
+Male,Senior,2.0,2.0,0.74,0.0,0.67,1.0,Seated Marches
+Male,Senior,4.0,1.0,3.18,3.22,1.3,0.54,Seated Marching
+Male,Senior,3.0,2.0,2.67,1.73,0.94,1.05,Seated Marching
+Male,Senior,3.0,2.0,0.75,0.52,1.03,1.08,Wall Push-up
+Male,Senior,8.0,1.0,0.28,-2.03,-2.84,0.55,Seated Shoulder Raise
+Male,Senior,1.0,0.0,1.81,0.9,-0.36,-0.0,Diaphragmatic Breathing
+Male,Senior,10.0,0.0,2.65,1.14,3.43,-0.0,Seated Shoulder Raise
+Male,Senior,7.0,1.0,3.01,0.89,2.37,0.55,Seated Shoulder Raise
+Male,Senior,5.0,2.0,-2.97,-2.91,-1.67,1.16,Wall Push-up
+Male,Senior,8.0,1.0,-0.77,-1.21,2.66,0.52,Seated Shoulder Raise
+Male,Senior,16.0,0.0,5.76,4.96,5.31,-0.0,Seated Shoulder Raise
+Male,Senior,1.0,2.0,-0.58,-0.39,0.35,-1.05,Seated Figure-Four Stretch
+Male,Senior,5.0,2.0,1.0,0.86,1.71,0.99,Wall Push-up
+Male,Senior,1.0,2.0,0.0,-0.39,-0.35,1.12,Seated Figure-Four Stretch
+Male,Senior,13.0,2.0,1.69,0.86,4.48,1.06,Seated Shoulder Raise
+Male,Senior,1.0,3.0,4.55,3.08,-0.34,1.67,Seated Marching
+Male,Senior,8.0,0.0,3.35,1.8,2.83,-0.0,Seated Shoulder Raise
+Male,Senior,1.0,1.0,0.0,0.72,0.38,-0.57,Seated Marches
+Male,Senior,2.0,3.0,0.0,-0.71,0.65,-1.68,Seated Figure-Four Stretch
+Female,Teen,3.0,0.0,-1.02,-1.79,-1.09,-0.0,Resistance Band Shoulder Squeeze
+Female,Teen,4.0,2.0,-0.53,-1.71,1.42,-1.05,Wall Angel
+Female,Teen,5.0,1.0,-0.25,-0.17,1.59,-0.55,Wall Angel
+Female,Teen,5.0,2.0,-5.16,-4.35,-1.9,-1.22,Bird Dog
+Female,Teen,5.0,1.0,1.84,1.29,1.71,0.58,Wall Angel
+Female,Teen,2.0,1.0,2.04,1.0,0.78,-0.58,Bird Dog
+Female,Teen,2.0,3.0,1.55,0.42,0.87,1.87,Glute Bridge
+Female,Teen,3.0,1.0,2.81,0.0,1.16,-0.6,Wall Angel
+Female,Young Adult,1.0,4.0,0.24,-1.34,-0.31,-1.66,Clamshell
+Female,Young Adult,3.0,5.0,-0.83,-0.56,-1.05,-2.43,Clamshell
+Female,Young Adult,2.0,2.0,-0.52,-1.61,0.72,1.05,Clamshell
+Female,Young Adult,7.0,2.0,-0.5,-1.42,2.18,-1.01,Shoulder Press
+Female,Young Adult,2.0,3.0,0.6,-2.98,-0.78,-1.95,Clamshell
+Female,Young Adult,11.0,2.0,-2.51,-1.21,3.62,1.12,Shoulder Press
+Female,Young Adult,3.0,0.0,-0.46,-0.65,-0.98,-0.0,Resistance Band Arm Stretch
+Female,Young Adult,4.0,3.0,-1.57,-2.36,-1.46,1.55,Shoulder Press
+Female,Young Adult,3.0,0.0,-1.77,-0.7,0.9,-0.0,Resistance Band Arm Stretch
+Female,Middle-aged,6.0,2.0,-0.3,-2.1,-1.95,-1.09,Band Shoulder Abduction
+Female,Middle-aged,3.0,1.0,0.27,-1.48,0.98,-0.55,Cross-Body Arm Stretch
+Female,Middle-aged,0.0,2.0,0.53,-1.29,-0.0,1.02,Standing Hip Abduction
+Female,Middle-aged,2.0,0.0,0.7,-0.5,0.61,-0.0,Cross-Body Arm Stretch
+Female,Middle-aged,0.0,1.0,-2.57,-3.97,-0.0,-0.53,Modified Plank
+Female,Middle-aged,0.0,3.0,3.0,-0.75,-0.0,1.68,Standing Hip Abduction
+Female,Middle-aged,2.0,3.0,-0.54,-2.42,-0.75,-1.67,Standing Hip Abduction
+Female,Middle-aged,2.0,1.0,-0.25,-2.84,0.71,-0.53,Modified Plank
+Female,Middle-aged,3.0,0.0,1.61,1.29,1.05,-0.0,Cross-Body Arm Stretch
+Female,Senior,4.0,3.0,0.0,-1.1,-1.47,1.52,Wall Push-up
+Female,Senior,5.0,0.0,2.62,2.0,2.03,-0.0,Seated Shoulder Raise
+Female,Senior,0.0,3.0,1.34,-0.37,-0.0,1.75,Seated Figure-Four Stretch
+Female,Senior,2.0,4.0,-1.61,-2.83,-0.71,1.89,Seated Figure-Four Stretch
+Female,Senior,0.0,0.0,-1.52,-1.39,-0.0,-0.0,Diaphragmatic Breathing
+Female,Senior,3.0,3.0,3.45,2.09,1.19,1.7,Seated Marching
+Female,Senior,3.0,0.0,-3.09,-3.03,-1.18,-0.0,Seated Marching
+Female,Senior,5.0,4.0,2.79,0.42,-1.86,2.03,Seated Shoulder Raise
+Female,Senior,0.0,0.0,2.88,1.08,-0.0,-0.0,Seated Marching
+Male,Teen,6.0,3.0,-3.54,-2.81,-1.95,-1.67,Wall Angel
+Male,Teen,11.0,0.0,-1.15,1.32,-3.66,-0.0,Wall Angel
+Male,Teen,4.0,2.0,-1.55,-2.08,-1.33,1.13,Wall Angel
+Male,Teen,1.0,3.0,-3.75,-2.56,0.42,1.95,Bird Dog
+Male,Teen,8.0,5.0,-2.93,-2.01,-3.34,2.73,Wall Angel
+Male,Teen,3.0,4.0,0.0,-0.31,-0.95,1.94,Glute Bridge
+Male,Teen,0.0,6.0,-0.68,-1.13,-0.0,3.95,Glute Bridge
+Male,Teen,2.0,2.0,1.74,0.2,0.82,1.06,Side-lying Leg Lift
+Male,Teen,1.0,2.0,-0.31,-0.42,-0.41,1.16,Glute Bridge
+Male,Young Adult,3.0,1.0,-2.48,-0.65,-0.95,0.5,Resistance Band Arm Stretch
+Male,Young Adult,13.0,1.0,0.67,-1.14,4.45,0.44,Shoulder Press
+Male,Young Adult,12.0,1.0,3.54,-0.45,3.11,0.43,Shoulder Press
+Male,Young Adult,4.0,1.0,-1.16,-2.47,1.41,0.48,Resistance Band Arm Stretch
+Male,Young Adult,0.0,0.0,-1.17,-1.46,-0.0,-0.0,Plank
+Male,Young Adult,3.0,0.0,-0.49,-0.69,-0.97,-0.0,Resistance Band Arm Stretch
+Male,Young Adult,4.0,2.0,-0.53,-1.97,1.33,-1.16,Resistance Band Arm Stretch
+Male,Young Adult,4.0,1.0,-0.73,0.66,1.27,-0.53,Resistance Band Arm Stretch
+Male,Young Adult,9.0,1.0,-1.5,-2.16,-2.96,-0.53,Shoulder Press
+Male,Middle-aged,0.0,0.0,1.63,0.79,-0.0,-0.0,Modified Plank
+Male,Middle-aged,1.0,1.0,-0.95,-2.24,-0.34,-0.5,Modified Plank
+Male,Middle-aged,0.0,1.0,-1.37,-2.71,-0.0,0.47,Modified Plank
+Male,Middle-aged,3.0,2.0,-0.23,-1.1,0.93,-0.9,Cross-Body Arm Stretch
+Male,Middle-aged,11.0,1.0,1.47,0.51,3.48,0.49,Band Shoulder Abduction
+Male,Middle-aged,1.0,2.0,0.47,-0.16,-0.32,-1.09,Standing Hip Abduction
+Male,Middle-aged,3.0,2.0,-1.68,-2.36,1.01,-1.03,Modified Plank
+Male,Middle-aged,0.0,3.0,-0.5,-0.35,-0.0,-1.51,Standing Hip Abduction
+Male,Middle-aged,4.0,0.0,0.81,-0.73,1.41,-0.0,Cross-Body Arm Stretch
+Male,Senior,2.0,0.0,1.62,0.73,0.71,-0.0,Wall Push-up
+Male,Senior,2.0,1.0,0.75,0.53,0.71,0.56,Wall Push-up
+Male,Senior,5.0,0.0,1.53,1.64,1.59,-0.0,Wall Push-up
+Male,Senior,1.0,3.0,-1.17,-2.18,-0.31,-1.52,Seated Figure-Four Stretch
+Male,Senior,6.0,3.0,1.98,1.01,2.15,1.62,Seated Shoulder Raise
+Male,Senior,3.0,2.0,0.76,0.87,1.1,-1.04,Wall Push-up
+Male,Senior,1.0,1.0,1.93,0.33,0.33,0.5,Diaphragmatic Breathing
+Male,Senior,3.0,1.0,0.25,-1.68,1.01,-0.55,Wall Push-up
+Male,Senior,6.0,1.0,0.51,1.39,2.06,-0.52,Wall Push-up
