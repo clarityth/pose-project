@@ -4,107 +4,520 @@
   <meta charset="UTF-8">
   <title>Pose API 테스트</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; background: #f9f9f9 }
-    form { background: white; padding: 15px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 20px }
-    input, button { width: 100%; padding: 10px; margin-top: 10px }
-    button { background: #007bff; color: white; border: none; font-weight: bold; cursor: pointer }
-    button:hover { background: #0056b3 }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background: #f2f4f8;
+      color: #333;
+    }
+    h2 { color: #2c3e50; }
+    form {
+      background: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      margin-bottom: 24px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background: #3498db;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .results {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      margin-top: 20px;
+      display: none;
+    }
+    .section {
+      margin-bottom: 24px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background: #ecf0f1;
+    }
+    .cards {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 12px;
+      width: calc(33.333% - 16px);
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .card h4 { margin: 8px 0; font-size: 16px; }
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .video-card {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      overflow: hidden;
+      text-align: center;
+    }
+    .video-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .video-card h5 {
+      margin: 8px;
+      font-size: 14px;
+    }
+    .report {
+      background: #fcfcfc;
+      border-left: 4px solid #3498db;
+      padding: 12px 16px;
+      border-radius: 4px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    /* 차트 캔버스 스타일 */
+    #historyChart {
+      width: 100%;
+      max-width: 100%;
+      height: 400px;
+      margin-top: 16px;
+    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Chart.js CDN 추가 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<h2>1. 회원가입</h2>
-<form id="registerForm">
-  <input type="email" id="regEmail" placeholder="이메일" required>
-  <input type="password" id="regPassword" placeholder="비밀번호" required>
-  <button type="submit">회원가입</button>
-</form>
+  <h2>1. 회원가입</h2>
+  <form id="registerForm">
+    <input type="text" id="name" placeholder="이름" required>
+    <input type="email" id="regEmail" placeholder="이메일" required>
+    <input type="password" id="regPassword" placeholder="비밀번호" required>
+    <button type="submit">회원가입</button>
+  </form>
 
-<h2>2. 로그인</h2>
-<form id="loginForm">
-  <input type="email" id="loginEmail" placeholder="이메일" required>
-  <input type="password" id="loginPassword" placeholder="비밀번호" required>
-  <button type="submit">로그인</button>
-</form>
+  <h2>2. 로그인</h2>
+  <form id="loginForm">
+    <input type="email" id="loginEmail" placeholder="이메일" required>
+    <input type="password" id="loginPassword" placeholder="비밀번호" required>
+    <button type="submit">로그인</button>
+  </form>
 
-<h2>3. 프로필 등록</h2>
-<form id="profileForm">
-  <input type="text" id="gender" placeholder="성별" required>
-  <input type="number" id="age" placeholder="나이" required>
-  <input type="number" id="weight" placeholder="몸무게" required>
-  <input type="number" id="height" placeholder="키" required>
-  <button type="submit">프로필 등록</button>
-</form>
+  <h2>3. 프로필 등록</h2>
+  <form id="profileForm">
+    <input type="text" id="gender" placeholder="성별 (남자/여자)" required>
+    <input type="number" id="age" placeholder="나이 (10,20,…)" required>
+    <input type="number" id="weight" placeholder="몸무게 (kg)" required>
+    <input type="number" id="height" placeholder="키 (cm)" required>
+    <button type="submit">프로필 등록</button>
+  </form>
 
-<h2>4. 이미지 업로드</h2>
-<form id="imageForm" enctype="multipart/form-data">
-  <input type="file" id="imageFile" accept="image/*" required>
-  <button type="submit">이미지 업로드</button>
-</form>
+  <h2>4. 이미지 업로드 & 분석</h2>
+  <form id="imageForm" enctype="multipart/form-data">
+    <input type="file" id="imageFile" accept="image/*" required>
+    <button type="submit">이미지 업로드</button>
+  </form>
 
-<script>
-const api = "http://127.0.0.1:8000";
-let currentUserId = null;
+  <div id="output" class="results">
+    <div class="section">
+      <h3>🛠 Raw Server Response</h3>
+      <pre id="rawResponse" style="background:#222;color:#eee;padding:10px;border-radius:4px;overflow-x:auto;"></pre>
+    </div>
+    <div class="section">
+      <h3>👤 사용자 정보</h3>
+      <div id="renderedUserInfo">-</div>
+    </div>
+    <div class="section">
+      <h3>📊 Metrics & Percentiles</h3>
+      <table>
+        <tr><th>지표</th><th>값</th><th>백분위</th></tr>
+        <tbody id="metricsTable"></tbody>
+      </table>
+    </div>
 
-document.getElementById("registerForm").onsubmit = async (e) => {
-  e.preventDefault();
-  const email = document.getElementById("regEmail").value;
-  const password = document.getElementById("regPassword").value;
-  const res = await fetch(`${api}/register`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
-  });
-  const result = await res.json();
-  alert(result.message || result.detail);
-};
+    <div class="section">
+      <h3>🔄 변화 추이</h3>
+      <table>
+        <tr><th>지표</th><th>변화량</th></tr>
+        <tbody id="changesTable"></tbody>
+      </table>
+    </div>
 
-document.getElementById("loginForm").onsubmit = async (e) => {
-  e.preventDefault();
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
-  const res = await fetch(`${api}/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
-  });
-  const result = await res.json();
-  if (res.ok) {
-    currentUserId = result.user_id;
-    alert("로그인 성공");
-  } else {
-    alert(result.detail || "로그인 실패");
-  }
-};
+    <div class="section">
+      <h3>⏳ 업로드 이력</h3>
+      <table>
+        <tr><th>마지막 업로드 날짜</th><th>경과 일수</th></tr>
+        <tr id="uploadHistoryRow">
+          <td>-</td><td>-</td>
+        </tr>
+      </table>
+    </div>
 
-document.getElementById("profileForm").onsubmit = async (e) => {
-  e.preventDefault();
-  if (!currentUserId) return alert("먼저 로그인하세요.");
-  const res = await fetch(`${api}/profile`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      user_id: currentUserId,
-      gender: document.getElementById("gender").value,
-      age: Number(document.getElementById("age").value),
-      weight: Number(document.getElementById("weight").value),
-      height: Number(document.getElementById("height").value)
-    })
-  });
-  alert((await res.json()).message || "에러");
-};
+    <!-- 업로드 이력 그래프 섹션 추가 -->
+    <div class="section">
+      <h3>📈 업로드 이력 그래프</h3>
+      <canvas id="historyChart"></canvas>
+    </div>
 
-document.getElementById("imageForm").onsubmit = async (e) => {
-  e.preventDefault();
-  if (!currentUserId) return alert("먼저 로그인하세요.");
-  const formData = new FormData();
-  formData.append("file", document.getElementById("imageFile").files[0]);
-  const res = await fetch(`${api}/upload-image?user_id=${currentUserId}`, {
-    method: "POST",
-    body: formData
-  });
-  alert((await res.json()).message || "업로드 실패");
-};
-</script>
+    <div class="section">
+      <h3>🔍 Keypoint Visuals</h3>
+      <div id="images"></div>
+    </div>
+
+    <div class="section">
+      <h3>💪 추천 운동</h3>
+      <div class="cards" id="recoCards"></div>
+    </div>
+
+    <div class="section">
+      <h3>🎥 추천 영상</h3>
+      <div class="videos" id="videos"></div>
+    </div>
+
+    <div class="section">
+      <h3>📝 종합 리포트</h3>
+      <div class="report" id="reportText"></div>
+    </div>
+
+  </div>
+
+  <script>
+    const api = "http://127.0.0.1:8000";
+    let currentUserId = null;
+    let historyChartInstance = null;
+
+    // 회원가입
+    document.getElementById("registerForm").onsubmit = async e => {
+      e.preventDefault();
+      const res = await fetch(`${api}/register`, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+          name: document.getElementById("name").value,
+          email: document.getElementById("regEmail").value,
+          password: document.getElementById("regPassword").value
+        })
+      });
+      const j = await res.json();
+      window.alert(j.message || j.detail);
+    };
+
+    // 로그인
+    let currentUserName = null;
+    document.getElementById("loginForm").onsubmit = async e => {
+      e.preventDefault();
+      const res = await fetch(`${api}/login`, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+          email: document.getElementById("loginEmail").value,
+          password: document.getElementById("loginPassword").value
+        })
+      });
+      const j = await res.json();
+      if (res.ok) {
+        currentUserId = j.user_id;
+        currentUserName = j.name;
+        document.getElementById("userInfo").textContent = "환영합니다, " + currentUserName;
+        window.alert("로그인 성공: user_id=" + currentUserId);
+      } else {
+        window.alert(j.detail || "로그인 실패");
+      }
+    };
+
+    // 프로필 등록
+    document.getElementById("profileForm").onsubmit = async e => {
+      e.preventDefault();
+      if (!currentUserId) return window.alert("먼저 로그인하세요.");
+      const res = await fetch(`${api}/profile`, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+          user_id: currentUserId,
+          gender: document.getElementById("gender").value,
+          age: Number(document.getElementById("age").value),
+          weight: Number(document.getElementById("weight").value),
+          height: Number(document.getElementById("height").value)
+        })
+      });
+      const j = await res.json();
+      window.alert(j.message || j.detail);
+    };
+
+    // 결과 렌더링
+    async function showResult(data) {
+      // Raw Response
+      document.getElementById("rawResponse").textContent = JSON.stringify(data, null, 2);
+
+      // 사용자 정보
+      if (data.user) {
+        document.getElementById("renderedUserInfo").innerHTML = `
+          <p>이름: ${data.user.name}</p>
+          <p>성별: ${data.user.gender}</p>
+          <p>나이: ${data.user.age}세</p>
+          <p>몸무게: ${data.user.weight}kg</p>
+          <p>키: ${data.user.height}cm</p>
+        `;
+      } else {
+        document.getElementById("renderedUserInfo").textContent = '-';
+      }
+
+      document.getElementById("output").style.display = "block";
+
+      // Metrics & Percentiles
+      const mt = document.getElementById("metricsTable");
+      mt.innerHTML = "";
+      for (let k in data.metrics) {
+        const tr = document.createElement("tr");
+
+        // 값 포맷
+        const metricVal = data.metrics[k] != null
+          ? Number(data.metrics[k]).toFixed(2)
+          : "-";
+
+        // Percentile 찾기
+        const baseKey = k.replace(/_(px|deg)$/, "");
+        let pval = data.percentiles[k];
+        if (pval == null) {
+          pval = data.percentiles[baseKey];
+        }
+        const perc = pval != null ? pval + "%" : "-";
+
+        tr.innerHTML = `
+          <td>${k.replace(/_/g, " ")}</td>
+          <td>${metricVal}</td>
+          <td>${perc}</td>
+        `;
+        mt.appendChild(tr);
+      }
+
+      // 변화 추이 테이블
+      const ct = document.getElementById("changesTable");
+      ct.innerHTML = '';
+      if (data.changes) {
+        for (let k in data.changes) {
+          const changeVal = data.changes[k];
+          const formatted = changeVal != null
+            ? (changeVal >= 0 ? '+' : '') + Number(changeVal).toFixed(2)
+            : "-";
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${k.replace(/_/g,' ')}</td>
+            <td>${formatted}</td>
+          `;
+          ct.appendChild(tr);
+        }
+      }
+
+      // 업로드 이력 날짜 & 경과 일수
+      const histRow = document.getElementById("uploadHistoryRow");
+      histRow.children[0].textContent = data.last_upload_date || "-";
+      histRow.children[1].textContent = data.days_since != null
+        ? parseInt(data.days_since) + "일"
+        : "-";
+
+      // Keypoint Visuals
+      const imgs = document.getElementById("images");
+      imgs.innerHTML = "";
+      Object.entries(data.visuals || {}).forEach(([k, url]) => {
+        const d = document.createElement("div");
+        d.style.display = "inline-block";
+        d.style.margin = "8px";
+        d.innerHTML = `<strong>${k}</strong><br><img src="${url}" width="180">`;
+        imgs.appendChild(d);
+      });
+
+      // 추천 운동
+      const rc = document.getElementById("recoCards");
+      rc.innerHTML = "";
+      (data.recommendations || []).forEach(r => {
+        const c = document.createElement("div");
+        c.className = "card";
+        c.innerHTML = `<h4>${r.exercise}</h4><p>확률: ${r.probability}%</p>`;
+        rc.appendChild(c);
+      });
+
+      // 추천 영상
+      const vids = document.getElementById("videos");
+      vids.innerHTML = "";
+      (data.videos || []).forEach(v => {
+        const d = document.createElement("div");
+        d.className = "video-card";
+        d.innerHTML = `
+          <img src="${v.thumbnail_url}" alt="${v.video_title}">
+          <h5>${v.video_title}</h5>
+          <p>${v.video_desc}</p>
+          <a href="${v.video_url}" target="_blank">영상 보기</a>
+        `;
+        vids.appendChild(d);
+      });
+
+      // 종합 리포트
+      document.getElementById("reportText").innerText = data.report;
+      document.getElementById("reportText").parentElement.style.display = 'block';
+
+      // 업로드 이력(History) 그래프 그리기
+      renderHistoryChart(data.history || []);
+    }
+
+    // 업로드 이력 그래프 렌더링 함수
+    function renderHistoryChart(historyData) {
+      const ctx = document.getElementById("historyChart").getContext("2d");
+
+      // 기존 차트가 있으면 파괴
+      if (historyChartInstance) {
+        historyChartInstance.destroy();
+      }
+
+      if (!historyData.length) {
+        // 데이터 없으면 빈 그래프 생성
+        historyChartInstance = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: [],
+            datasets: []
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              title: { display: true, text: '업로드 이력 데이터가 없습니다.' }
+            }
+          }
+        });
+        return;
+      }
+
+      // 라벨(날짜) 배열: created_at을 한국 시간 로컬 문자열로 변환
+      const labels = historyData.map(item => {
+        const d = new Date(item.created_at);
+        return d.toLocaleString('ko-KR', { hour12: false });
+      });
+
+      // 각 지표 키 목록
+      const metricKeys = [
+        "shoulder_height_diff_px",
+        "hip_height_diff_px",
+        "torso_vertical_tilt_deg",
+        "ear_hip_vertical_tilt_deg",
+        "shoulder_line_horizontal_tilt_deg",
+        "hip_line_horizontal_tilt_deg"
+      ];
+
+      // 차트 색상 배열 (지표별로 구분)
+      const colors = [
+        'rgba(231, 76, 60, 0.8)',    // 빨강
+        'rgba(52, 152, 219, 0.8)',   // 파랑
+        'rgba(46, 204, 113, 0.8)',   // 초록
+        'rgba(155, 89, 182, 0.8)',   // 보라
+        'rgba(241, 196, 15, 0.8)',   // 노랑
+        'rgba(26, 188, 156, 0.8)'    // 청록
+      ];
+
+      // 데이터셋 배열 생성
+      const datasets = metricKeys.map((key, idx) => {
+        return {
+          label: key.replace(/_/g, ' '),
+          data: historyData.map(item => {
+            const val = item[key];
+            return val != null ? Number(val) : null;
+          }),
+          fill: false,
+          borderColor: colors[idx],
+          tension: 0.3,
+          pointRadius: 4
+        };
+      });
+
+      // 차트 인스턴스 생성
+      historyChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          interaction: {
+            mode: 'index',
+            intersect: false
+          },
+          stacked: false,
+          plugins: {
+            title: {
+              display: true,
+              text: '업로드 이력별 지표 변화 그래프'
+            }
+          },
+          scales: {
+            x: {
+              display: true,
+              title: {
+                display: true,
+                text: '업로드 날짜 (KST)'
+              }
+            },
+            y: {
+              display: true,
+              title: {
+                display: true,
+                text: '값'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // 이미지 업로드
+    document.getElementById("imageForm").onsubmit = async e => {
+      e.preventDefault();
+      if (!currentUserId) return window.alert("먼저 로그인하세요.");
+      const fd = new FormData();
+      fd.append("file", document.getElementById("imageFile").files[0]);
+      const res = await fetch(`${api}/upload-image?user_id=${currentUserId}`, {
+        method: "POST", body: fd
+      });
+      const j = await res.json();
+      if (!res.ok) {
+        window.alert(j.detail || j.message || "업로드 실패");
+        return;
+      }
+      await showResult(j);
+      window.alert("분석이 완료되었습니다!");
+    };
+  </script>
 </body>
 </html>
