@@ -6,6 +6,8 @@ from sqlalchemy import func
 from sqlalchemy.orm import relationship
 from app.database import Base
 
+KST = timezone(timedelta(hours=9))
+
 class User(Base):
     __tablename__ = "users"
 
@@ -33,8 +35,11 @@ class Feature(Base):
     __tablename__ = "features"
 
     id = Column(Integer, primary_key=True, index=True)
-    from sqlalchemy import func
-    created_at = Column(DateTime(timezone=True), server_default=func.timezone('Asia/Seoul', func.now()), nullable=False)
+    created_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False
+    )
     user_profile_id = Column(Integer, ForeignKey("user_profiles.id"))
     image_filename = Column(String)
     shoulder_height_diff_px = Column(Float)
@@ -43,5 +48,6 @@ class Feature(Base):
     ear_hip_vertical_tilt_deg = Column(Float)
     shoulder_line_horizontal_tilt_deg = Column(Float)
     hip_line_horizontal_tilt_deg = Column(Float)
+    composite_score = Column(Float, nullable=True)
 
     user_profile = relationship("UserProfile", backref="features")

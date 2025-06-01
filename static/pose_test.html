@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Pose API 테스트</title>
   <style>
     body {
@@ -12,15 +12,18 @@
       background: #f2f4f8;
       color: #333;
     }
-    h2 { color: #2c3e50; }
+    h2 {
+      color: #2c3e50;
+    }
     form {
       background: #fff;
       padding: 16px;
       border-radius: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
       margin-bottom: 24px;
     }
-    input, button {
+    input,
+    button {
       width: 100%;
       padding: 10px;
       margin-top: 8px;
@@ -42,7 +45,7 @@
       background: #fff;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
       margin-top: 20px;
       display: none;
     }
@@ -54,13 +57,22 @@
       border-collapse: collapse;
       margin-top: 8px;
     }
-    th, td {
+    th,
+    td {
       padding: 8px;
       text-align: center;
       border-bottom: 1px solid #eee;
     }
     th {
       background: #ecf0f1;
+    }
+    .composite-box {
+      background: #fcfcfc;
+      border-left: 4px solid #3498db;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+      font-weight: bold;
     }
     .cards {
       display: flex;
@@ -76,7 +88,10 @@
       box-sizing: border-box;
       text-align: center;
     }
-    .card h4 { margin: 8px 0; font-size: 16px; }
+    .card h4 {
+      margin: 8px 0;
+      font-size: 16px;
+    }
     .videos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -107,62 +122,70 @@
       white-space: pre-wrap;
     }
     /* 차트 캔버스 스타일 */
-    #historyChart {
+    #historyChart,
+    #normalDistChart {
       width: 100%;
       max-width: 100%;
       height: 400px;
       margin-top: 16px;
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <!-- Chart.js CDN 추가 -->
+  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
   <h2>1. 회원가입</h2>
   <form id="registerForm">
-    <input type="text" id="name" placeholder="이름" required>
-    <input type="email" id="regEmail" placeholder="이메일" required>
-    <input type="password" id="regPassword" placeholder="비밀번호" required>
+    <input type="text" id="name" placeholder="이름" required />
+    <input type="email" id="regEmail" placeholder="이메일" required />
+    <input type="password" id="regPassword" placeholder="비밀번호" required />
     <button type="submit">회원가입</button>
   </form>
 
   <h2>2. 로그인</h2>
   <form id="loginForm">
-    <input type="email" id="loginEmail" placeholder="이메일" required>
-    <input type="password" id="loginPassword" placeholder="비밀번호" required>
+    <input type="email" id="loginEmail" placeholder="이메일" required />
+    <input type="password" id="loginPassword" placeholder="비밀번호" required />
     <button type="submit">로그인</button>
   </form>
 
   <h2>3. 프로필 등록</h2>
   <form id="profileForm">
-    <input type="text" id="gender" placeholder="성별 (남자/여자)" required>
-    <input type="number" id="age" placeholder="나이 (10,20,…)" required>
-    <input type="number" id="weight" placeholder="몸무게 (kg)" required>
-    <input type="number" id="height" placeholder="키 (cm)" required>
+    <input type="text" id="gender" placeholder="성별 (남자/여자)" required />
+    <input type="number" id="age" placeholder="나이 (10,20,…)" required />
+    <input type="number" id="weight" placeholder="몸무게 (kg)" required />
+    <input type="number" id="height" placeholder="키 (cm)" required />
     <button type="submit">프로필 등록</button>
   </form>
 
-  <h2>4. 이미지 업로드 & 분석</h2>
+  <h2>4. 이미지 업로드 &amp; 분석</h2>
   <form id="imageForm" enctype="multipart/form-data">
-    <input type="file" id="imageFile" accept="image/*" required>
+    <input type="file" id="imageFile" accept="image/*" required />
     <button type="submit">이미지 업로드</button>
   </form>
 
   <div id="output" class="results">
     <div class="section">
       <h3>🛠 Raw Server Response</h3>
-      <pre id="rawResponse" style="background:#222;color:#eee;padding:10px;border-radius:4px;overflow-x:auto;"></pre>
+      <pre
+        id="rawResponse"
+        style="background:#222;color:#eee;padding:10px;border-radius:4px;overflow-x:auto;"
+      ></pre>
     </div>
     <div class="section">
       <h3>👤 사용자 정보</h3>
       <div id="renderedUserInfo">-</div>
     </div>
+
+    <!-- 종합 퍼센타일 섹션 추가 -->
+    <div class="composite-box">
+      종합점수 퍼센타일: <span id="compositePercentile">-</span>%
+    </div>
+
     <div class="section">
-      <h3>📊 Metrics & Percentiles</h3>
+      <h3>📊 Metrics</h3>
       <table>
-        <tr><th>지표</th><th>값</th><th>백분위</th></tr>
+        <tr><th>지표</th><th>값</th></tr>
         <tbody id="metricsTable"></tbody>
       </table>
     </div>
@@ -185,10 +208,16 @@
       </table>
     </div>
 
-    <!-- 업로드 이력 그래프 섹션 추가 -->
+    <!-- 업로드 이력 그래프 -->
     <div class="section">
       <h3>📈 업로드 이력 그래프</h3>
       <canvas id="historyChart"></canvas>
+    </div>
+
+    <!-- 정규 분포 그래프: composite_min/max 범위로 그리도록 -->
+    <div class="section">
+      <h3>📊 종합점수 정규 분포</h3>
+      <canvas id="normalDistChart"></canvas>
     </div>
 
     <div class="section">
@@ -210,77 +239,79 @@
       <h3>📝 종합 리포트</h3>
       <div class="report" id="reportText"></div>
     </div>
-
   </div>
 
   <script>
-    // 1) API 주소를 실제 서버 IP 혹은 도메인으로 바꿔야 이미지 URL도 올바르게 작동합니다.
-    const api = "http://localhost:8000"; // ← 여기만 자신의 서버 주소/포트로 수정
+    //  API 주소를 실제 서버 IP/포트로 수정해야 이미지 URL도 올바르게 작동합니다.
+    const api = "http://localhost:8000"; // ← 실제 서버 주소/포트로 바꿀 것
 
     let currentUserId = null;
     let historyChartInstance = null;
+    let normalDistChartInstance = null;
 
-    // 회원가입
-    document.getElementById("registerForm").onsubmit = async e => {
+    // 1) 회원가입
+    document.getElementById("registerForm").onsubmit = async (e) => {
       e.preventDefault();
       const res = await fetch(`${api}/register`, {
         method: "POST",
-        headers: {"Content-Type":"application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: document.getElementById("name").value,
           email: document.getElementById("regEmail").value,
-          password: document.getElementById("regPassword").value
-        })
+          password: document.getElementById("regPassword").value,
+        }),
       });
       const j = await res.json();
       window.alert(j.message || j.detail);
     };
 
-    // 로그인
-    let currentUserName = null;
-    document.getElementById("loginForm").onsubmit = async e => {
+    // 2) 로그인
+    document.getElementById("loginForm").onsubmit = async (e) => {
       e.preventDefault();
       const res = await fetch(`${api}/login`, {
         method: "POST",
-        headers: {"Content-Type":"application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: document.getElementById("loginEmail").value,
-          password: document.getElementById("loginPassword").value
-        })
+          password: document.getElementById("loginPassword").value,
+        }),
       });
       const j = await res.json();
       if (res.ok) {
         currentUserId = j.user_id;
-        currentUserName = j.name;
         window.alert("로그인 성공: user_id=" + currentUserId);
       } else {
         window.alert(j.detail || "로그인 실패");
       }
     };
 
-    // 프로필 등록
-    document.getElementById("profileForm").onsubmit = async e => {
+    // 3) 프로필 등록
+    document.getElementById("profileForm").onsubmit = async (e) => {
       e.preventDefault();
       if (!currentUserId) return window.alert("먼저 로그인하세요.");
       const res = await fetch(`${api}/profile`, {
         method: "POST",
-        headers: {"Content-Type":"application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           user_id: currentUserId,
           gender: document.getElementById("gender").value,
           age: Number(document.getElementById("age").value),
           weight: Number(document.getElementById("weight").value),
-          height: Number(document.getElementById("height").value)
-        })
+          height: Number(document.getElementById("height").value),
+        }),
       });
       const j = await res.json();
       window.alert(j.message || j.detail);
     };
 
-    // 결과 렌더링
+    // 4) 결과 렌더링
     async function showResult(data) {
       // Raw Response
-      document.getElementById("rawResponse").textContent = JSON.stringify(data, null, 2);
+      document.getElementById("rawResponse").textContent = JSON.stringify(
+        data,
+        null,
+        2
+      );
 
       // 사용자 정보
       if (data.user) {
@@ -292,50 +323,39 @@
           <p>키: ${data.user.height}cm</p>
         `;
       } else {
-        document.getElementById("renderedUserInfo").textContent = '-';
+        document.getElementById("renderedUserInfo").textContent = "-";
       }
+
+      // 종합 퍼센타일
+      document.getElementById("compositePercentile").textContent =
+        data.composite_percentile != null ? data.composite_percentile : "-";
 
       document.getElementById("output").style.display = "block";
 
-      // Metrics & Percentiles
+      // Metrics (지표 값만)
       const mt = document.getElementById("metricsTable");
       mt.innerHTML = "";
       for (let k in data.metrics) {
         const tr = document.createElement("tr");
-
-        // 값 포맷
-        const metricVal = data.metrics[k] != null
-          ? Number(data.metrics[k]).toFixed(2)
-          : "-";
-
-        // Percentile 찾기
-        const baseKey = k.replace(/_(px|deg)$/, "");
-        let pval = data.percentiles[k];
-        if (pval == null) {
-          pval = data.percentiles[baseKey];
-        }
-        const perc = pval != null ? pval + "%" : "-";
-
+        const metricVal = data.metrics[k] != null ? Number(data.metrics[k]).toFixed(2) : "-";
         tr.innerHTML = `
           <td>${k.replace(/_/g, " ")}</td>
           <td>${metricVal}</td>
-          <td>${perc}</td>
         `;
         mt.appendChild(tr);
       }
 
       // 변화 추이 테이블
       const ct = document.getElementById("changesTable");
-      ct.innerHTML = '';
+      ct.innerHTML = "";
       if (data.changes) {
         for (let k in data.changes) {
           const changeVal = data.changes[k];
-          const formatted = changeVal != null
-            ? (changeVal >= 0 ? '+' : '') + Number(changeVal).toFixed(2)
-            : "-";
-          const tr = document.createElement('tr');
+          const formatted =
+            changeVal != null ? (changeVal >= 0 ? "+" : "") + Number(changeVal).toFixed(2) : "-";
+          const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td>${k.replace(/_/g,' ')}</td>
+            <td>${k.replace(/_/g, " ")}</td>
             <td>${formatted}</td>
           `;
           ct.appendChild(tr);
@@ -345,26 +365,24 @@
       // 업로드 이력 날짜 & 경과 일수
       const histRow = document.getElementById("uploadHistoryRow");
       histRow.children[0].textContent = data.last_upload_date || "-";
-      histRow.children[1].textContent = data.days_since != null
-        ? parseInt(data.days_since) + "일"
-        : "-";
+      histRow.children[1].textContent =
+        data.days_since != null ? parseInt(data.days_since) + "일" : "-";
 
       // Keypoint Visuals (Static URL)
       const imgs = document.getElementById("images");
       imgs.innerHTML = "";
-      // data.visuals 객체 안에 이미 URL이 들어있으므로, 그대로 <img src="URL">로 렌더링
       Object.entries(data.visuals || {}).forEach(([k, url]) => {
         const d = document.createElement("div");
         d.style.display = "inline-block";
         d.style.margin = "8px";
-        d.innerHTML = `<strong>${k}</strong><br><img src="${url}" width="180">`;
+        d.innerHTML = `<strong>${k}</strong><br><img src="${url}" width="180" />`;
         imgs.appendChild(d);
       });
 
       // 추천 운동
       const rc = document.getElementById("recoCards");
       rc.innerHTML = "";
-      (data.recommendations || []).forEach(r => {
+      (data.recommendations || []).forEach((r) => {
         const c = document.createElement("div");
         c.className = "card";
         c.innerHTML = `<h4>${r.exercise}</h4><p>확률: ${r.probability}%</p>`;
@@ -374,11 +392,11 @@
       // 추천 영상
       const vids = document.getElementById("videos");
       vids.innerHTML = "";
-      (data.videos || []).forEach(v => {
+      (data.videos || []).forEach((v) => {
         const d = document.createElement("div");
         d.className = "video-card";
         d.innerHTML = `
-          <img src="${v.thumbnail_url}" alt="${v.video_title}">
+          <img src="${v.thumbnail_url}" alt="${v.video_title}" />
           <h5>${v.video_title}</h5>
           <p>${v.video_desc}</p>
           <a href="${v.video_url}" target="_blank">영상 보기</a>
@@ -388,44 +406,46 @@
 
       // 종합 리포트
       document.getElementById("reportText").innerText = data.report;
-      document.getElementById("reportText").parentElement.style.display = 'block';
+      document.getElementById("reportText").parentElement.style.display = "block";
 
       // 업로드 이력(History) 그래프 그리기
       renderHistoryChart(data.history || []);
+
+      // 정규 분포 그래프 그리기 (min/max 기반)
+      renderNormalDistChart(
+        data.composite_mean,
+        data.composite_std,
+        data.composite_percentile,
+        data.composite_min,
+        data.composite_max
+      );
     }
 
     // 업로드 이력 그래프 렌더링 함수
     function renderHistoryChart(historyData) {
       const ctx = document.getElementById("historyChart").getContext("2d");
 
-      // 기존 차트가 있으면 파괴
-      if (historyChartInstance) {
-        historyChartInstance.destroy();
-      }
+      if (historyChartInstance) historyChartInstance.destroy();
 
       if (!historyData.length) {
-        // 데이터 없으면 빈 그래프 생성
         historyChartInstance = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: [],
-            datasets: []
-          },
+          type: "line",
+          data: { labels: [], datasets: [] },
           options: {
             responsive: true,
             plugins: {
               legend: { display: false },
-              title: { display: true, text: '업로드 이력 데이터가 없습니다.' }
-            }
-          }
+              title: { display: true, text: "업로드 이력 데이터가 없습니다." },
+            },
+          },
         });
         return;
       }
 
-      // 라벨(날짜) 배열: created_at을 한국 시간 로컬 문자열로 변환
-      const labels = historyData.map(item => {
+      // 라벨(날짜) 배열
+      const labels = historyData.map((item) => {
         const d = new Date(item.created_at);
-        return d.toLocaleString('ko-KR', { hour12: false });
+        return d.toLocaleString("ko-KR", { hour12: false });
       });
 
       // 각 지표 키 목록
@@ -435,82 +455,244 @@
         "torso_vertical_tilt_deg",
         "ear_hip_vertical_tilt_deg",
         "shoulder_line_horizontal_tilt_deg",
-        "hip_line_horizontal_tilt_deg"
+        "hip_line_horizontal_tilt_deg",
       ];
 
-      // 차트 색상 배열 (지표별로 구분)
+      // 차트 색상 배열
       const colors = [
-        'rgba(231, 76, 60, 0.8)',    // 빨강
-        'rgba(52, 152, 219, 0.8)',   // 파랑
-        'rgba(46, 204, 113, 0.8)',   // 초록
-        'rgba(155, 89, 182, 0.8)',   // 보라
-        'rgba(241, 196, 15, 0.8)',   // 노랑
-        'rgba(26, 188, 156, 0.8)'    // 청록
+        "rgba(231, 76, 60, 0.8)",
+        "rgba(52, 152, 219, 0.8)",
+        "rgba(46, 204, 113, 0.8)",
+        "rgba(155, 89, 182, 0.8)",
+        "rgba(241, 196, 15, 0.8)",
+        "rgba(26, 188, 156, 0.8)",
       ];
 
       // 데이터셋 배열 생성
       const datasets = metricKeys.map((key, idx) => {
         return {
-          label: key.replace(/_/g, ' '),
-          data: historyData.map(item => {
+          label: key.replace(/_/g, " "),
+          data: historyData.map((item) => {
             const val = item[key];
             return val != null ? Number(val) : null;
           }),
           fill: false,
           borderColor: colors[idx],
           tension: 0.3,
-          pointRadius: 4
+          pointRadius: 4,
         };
       });
 
-      // 차트 인스턴스 생성
       historyChartInstance = new Chart(ctx, {
-        type: 'line',
+        type: "line",
         data: {
           labels: labels,
-          datasets: datasets
+          datasets: datasets,
         },
         options: {
           responsive: true,
           interaction: {
-            mode: 'index',
-            intersect: false
+            mode: "index",
+            intersect: false,
           },
           stacked: false,
           plugins: {
             title: {
               display: true,
-              text: '업로드 이력별 지표 변화 그래프'
-            }
+              text: "업로드 이력별 지표 변화 그래프",
+            },
           },
           scales: {
             x: {
               display: true,
               title: {
                 display: true,
-                text: '업로드 날짜 (KST)'
-              }
+                text: "업로드 날짜 (KST)",
+              },
             },
             y: {
               display: true,
               title: {
                 display: true,
-                text: '값'
-              }
-            }
-          }
-        }
+                text: "값",
+              },
+            },
+          },
+        },
       });
     }
 
-    // 이미지 업로드
-    document.getElementById("imageForm").onsubmit = async e => {
+    /**
+     * 정규 분포 그래프 렌더링 함수
+     *   - x축 범위: composite_min ~ composite_max
+     *   - 정규곡선: mean, std 이용
+     *   - 사용자 위치: percentile → x_user → 정규 PDF 높이(y_user)에 점찍기
+     */
+    function renderNormalDistChart(mean, std, percentile, minVal, maxVal) {
+      const ctx = document.getElementById("normalDistChart").getContext("2d");
+
+      if (normalDistChartInstance) normalDistChartInstance.destroy();
+
+      // mean 또는 std가 null이거나 그룹 내 min/max 중 하나라도 없으면 빈 그래프
+      if (
+        mean == null ||
+        std == null ||
+        std <= 0 ||
+        minVal == null ||
+        maxVal == null ||
+        minVal >= maxVal
+      ) {
+        normalDistChartInstance = new Chart(ctx, {
+          type: "line",
+          data: { labels: [], datasets: [] },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              title: { display: true, text: "정규 분포 데이터가 없습니다." },
+            },
+          },
+        });
+        return;
+      }
+
+      // x축 범위를 composite_min~composite_max 로 설정
+      const xMin = minVal;
+      const xMax = maxVal;
+      const step = (xMax - xMin) / 100; // 100포인트 분할
+
+      const xValues = [];
+      const yValues = [];
+
+      // 정규 분포 PDF: f(x) = (1 / (σ√(2π))) * exp(-0.5 * ((x-μ)/σ)^2)
+      for (let x = xMin; x <= xMax + 1e-9; x += step) {
+        const exponent = -0.5 * Math.pow((x - mean) / std, 2);
+        const y = (1 / (std * Math.sqrt(2 * Math.PI))) * Math.exp(exponent);
+        xValues.push(x);
+        yValues.push(y);
+      }
+
+      // 사용자 점수(x_user)를 percentile → x_user로 역변환
+      const x_user = percentileToX(mean, std, percentile);
+
+      // x_user가 [xMin, xMax] 밖에 있으면 경계에 맞춰 조정
+      const x_user_clamped = Math.min(Math.max(x_user, xMin), xMax);
+
+      // 그 x_user 위치에서의 PDF 높이(y_user)
+      const y_user =
+        (1 / (std * Math.sqrt(2 * Math.PI))) *
+        Math.exp(-0.5 * Math.pow((x_user_clamped - mean) / std, 2));
+
+      // scatter용 사용자 포인트 객체
+      const userPoint = { x: x_user_clamped, y: y_user };
+
+      normalDistChartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+          // xValues는 label용(문자열)으로, data로 넘겨줄 때는 숫자 배열을 쓰지 않고 Chart.js에 x축 옵션을 지정할 예정
+          labels: xValues.map((val) => val.toFixed(2)),
+          datasets: [
+            {
+              label: "정규 분포 곡선",
+              data: yValues,
+              borderColor: "rgba(52, 152, 219, 0.8)",
+              fill: false,
+              tension: 0.2,
+              pointRadius: 0,
+            },
+            {
+              label: "사용자 위치",
+              data: [
+                {
+                  x: userPoint.x,
+                  y: userPoint.y,
+                },
+              ],
+              backgroundColor: "rgba(231, 76, 60, 0.8)",
+              type: "scatter",
+              pointRadius: 6,
+              showLine: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          // x축을 숫자 스케일로 명시
+          scales: {
+            x: {
+              type: "linear",
+              position: "bottom",
+              title: {
+                display: true,
+                text: "종합점수",
+              },
+              min: xMin,
+              max: xMax,
+            },
+            y: {
+              display: true,
+              title: {
+                display: true,
+                text: "확률 밀도",
+              },
+              suggestedMin: 0,
+              suggestedMax: Math.max(...yValues) * 1.2,
+            },
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: `정규 분포 (μ=${mean.toFixed(2)}, σ=${std.toFixed(2)})`,
+            },
+            tooltip: {
+              mode: "nearest",
+              intersect: false,
+              callbacks: {
+                // scatter 툴팁에 x, y값을 함께 보여주도록
+                label: (ctx) => {
+                  const p = ctx.raw;
+                  return `점수: ${p.x.toFixed(2)}, 밀도: ${p.y.toFixed(3)}`;
+                },
+              },
+            },
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+    }
+
+    // percentile 값을 x축 값으로 변환해주는 헬퍼 함수
+    function percentileToX(mean, std, percentile) {
+      // JavaScript에는 표준 inverse erf 함수가 없으므로, 근사 방식을 이용:
+      // inverseCDF(p) ≈ μ + σ * sqrt(2) * inverseErf(2p - 1)
+      function inverseErf(x) {
+        // Abramowitz and Stegun formula 7.1.26 근사 (|x| < 1)
+        const a = 0.147;
+        const sign = x < 0 ? -1 : 1;
+        const lnTerm = Math.log(1 - x * x);
+        const firstPart = 2 / (Math.PI * a) + lnTerm / 2;
+        const secondPart = lnTerm / a;
+        return (
+          sign *
+          Math.sqrt(Math.sqrt(firstPart * firstPart - secondPart) - firstPart)
+        );
+      }
+      const p = percentile / 100;
+      const z = Math.SQRT2 * inverseErf(2 * p - 1);
+      return mean + std * z;
+    }
+
+    // 5) 이미지 업로드
+    document.getElementById("imageForm").onsubmit = async (e) => {
       e.preventDefault();
       if (!currentUserId) return window.alert("먼저 로그인하세요.");
       const fd = new FormData();
       fd.append("file", document.getElementById("imageFile").files[0]);
       const res = await fetch(`${api}/upload-image?user_id=${currentUserId}`, {
-        method: "POST", body: fd
+        method: "POST",
+        body: fd,
       });
       const j = await res.json();
       if (!res.ok) {
