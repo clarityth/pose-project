@@ -346,7 +346,16 @@ async def upload_image(
     recent_five = sorted(recent_objs, key=lambda f: f.created_at)
 
     history_list = []
+    base_url = os.getenv("BASE_URL")
     for feat in recent_five:
+        # 이미지 URL 만들기
+        stem_hist = Path(feat.image_filename).stem
+        visuals = {
+            "keypoints": f"{base_url}/static/pose_results/{stem_hist}_keypoints.png",
+            "shoulder_hip": f"{base_url}/static/pose_results/{stem_hist}_shoulder_hip.png",
+            "torso_tilt": f"{base_url}/static/pose_results/{stem_hist}_torso_tilt.png",
+            "ear_hip_tilt": f"{base_url}/static/pose_results/{stem_hist}_ear_hip_tilt.png",
+        }
         vals = [
             feat.shoulder_height_diff_px,
             feat.hip_height_diff_px,
@@ -373,6 +382,7 @@ async def upload_image(
             "hip_line_horizontal_tilt_deg": feat.hip_line_horizontal_tilt_deg,
             "composite_score": composite_score_history,
             "created_at": created_at.isoformat(),
+            "visuals": visuals,
         })
 
     # 마지막 업로드 날짜, 경과 일수 계산
@@ -497,7 +507,6 @@ async def upload_image(
     report = data["choices"][0]["message"]["content"]
 
     # Static URL 방식 이미지 반환
-    base_url = os.getenv("BASE_URL")
     visuals_urls = {
         "keypoints": f"{base_url}/static/pose_results/{stem}_keypoints.png",
         "shoulder_hip": f"{base_url}/static/pose_results/{stem}_shoulder_hip.png",

@@ -46,6 +46,7 @@ class HistoryItem(BaseModel):
     hip_line_horizontal_tilt_deg: float = Field(..., description="해당 시점의 골반 선 수평 기울기 (°)")
     composite_score: Optional[float] = Field(None, description="해당 시점의 종합점수 (각 지표 평균)")
     created_at: str = Field(..., description="레코드가 생성된 날짜-시간 (ISO8601, KST)")
+    visuals: Visuals = Field(..., description="해당 업로드에서 생성된 포즈 시각화 이미지 URL 모음")
 
 
 class Recommendation(BaseModel):
