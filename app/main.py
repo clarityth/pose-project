@@ -150,6 +150,8 @@ def create_profile(req: ProfileRequest, db: Session = Depends(get_db)):
         db.commit()
         return {"message": "신체 정보 등록 완료"}
 
+def none_to_zero(val):
+    return 0.0 if val is None else val
 
 @app.post(
     "/upload-image",
@@ -374,12 +376,12 @@ async def upload_image(
             created_at = created_at.replace(tzinfo=timezone(timedelta(hours=9)))
         history_list.append({
             "feature_id": feat.id,
-            "shoulder_height_diff_px": feat.shoulder_height_diff_px,
-            "hip_height_diff_px": feat.hip_height_diff_px,
-            "torso_vertical_tilt_deg": feat.torso_vertical_tilt_deg,
-            "ear_hip_vertical_tilt_deg": feat.ear_hip_vertical_tilt_deg,
-            "shoulder_line_horizontal_tilt_deg": feat.shoulder_line_horizontal_tilt_deg,
-            "hip_line_horizontal_tilt_deg": feat.hip_line_horizontal_tilt_deg,
+            "shoulder_height_diff_px": none_to_zero(feat.shoulder_height_diff_px),
+            "hip_height_diff_px": none_to_zero(feat.hip_height_diff_px),
+            "torso_vertical_tilt_deg": none_to_zero(feat.torso_vertical_tilt_deg),
+            "ear_hip_vertical_tilt_deg": none_to_zero(feat.ear_hip_vertical_tilt_deg),
+            "shoulder_line_horizontal_tilt_deg": none_to_zero(feat.shoulder_line_horizontal_tilt_deg),
+            "hip_line_horizontal_tilt_deg": none_to_zero(feat.hip_line_horizontal_tilt_deg),
             "composite_score": composite_score_history,
             "created_at": created_at.isoformat(),
             "visuals": visuals,
@@ -526,12 +528,12 @@ async def upload_image(
         },
         "visuals": visuals_urls,
         "metrics": {
-            "shoulder_height_diff_px": metrics["shoulder_height_diff"],
-            "hip_height_diff_px": metrics["hip_height_diff"],
-            "torso_vertical_tilt_deg": metrics["torso_vertical_tilt"],
-            "ear_hip_vertical_tilt_deg": metrics["ear_hip_vertical_tilt"],
-            "shoulder_line_horizontal_tilt_deg": metrics["shoulder_line_horizontal_tilt"],
-            "hip_line_horizontal_tilt_deg": metrics["hip_line_horizontal_tilt"],
+            "shoulder_height_diff_px": none_to_zero(metrics["shoulder_height_diff"]),
+            "hip_height_diff_px": none_to_zero(metrics["hip_height_diff"]),
+            "torso_vertical_tilt_deg": none_to_zero(metrics["torso_vertical_tilt"]),
+            "ear_hip_vertical_tilt_deg": none_to_zero(metrics["ear_hip_vertical_tilt"]),
+            "shoulder_line_horizontal_tilt_deg": none_to_zero(metrics["shoulder_line_horizontal_tilt"]),
+            "hip_line_horizontal_tilt_deg": none_to_zero(metrics["hip_line_horizontal_tilt"]),
         },
         "composite_score_current": composite_score_current,
         "composite_percentile": composite_percentile,
@@ -541,7 +543,7 @@ async def upload_image(
         "composite_max": composite_max,
         "last_upload_date": last_date_iso,
         "days_since": days_since,
-        "changes": changes,
+        "changes": {k: none_to_zero(v) for k, v in changes.items()},
         "history": history_list,
         "recommendations": recommendations,
         "videos": video_results,
