@@ -4,7 +4,7 @@ from datetime import timezone, timedelta
 import numpy as np
 import openai
 import requests
-from fastapi import FastAPI, Depends, HTTPException, UploadFile, File
+from fastapi import FastAPI, Depends, HTTPException, UploadFile, File, Form
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
@@ -33,7 +33,7 @@ from app.schemas import UploadResponse
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
 
-# 1) 정적 파일(serving) 설정: "static" 디렉터리 아래 이미지들을 "/static"으로 노출
+# 정적 파일(serving) 설정
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # CORS 설정
@@ -52,7 +52,7 @@ os.makedirs(TMP_OUTPUT_DIR, exist_ok=True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# 2) MoveNet TFLite 모델 로드
+# 포즈 추정 MoveNet TFLite 모델 로드
 MODEL_DIR = BASE_DIR / "pose_model"
 MOVENET_TFLITE_MODEL_PATH = MODEL_DIR / "movenet_thunder.tflite"
 if not MOVENET_TFLITE_MODEL_PATH.exists():
@@ -65,7 +65,7 @@ interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
-# 3) ML 모델(스케일러, 랜덤포레스트, 레이블 인코더) 로드
+# ML RandomForest 모델(스케일러, 랜덤포레스트, 레이블 인코더) 로드
 SCALER_PATH        = BASE_DIR / "model" / "exercise_scaler.pkl"
 MODEL_PATH         = BASE_DIR / "model" / "exercise_rf_model.pkl"
 LABEL_ENCODER_PATH = BASE_DIR / "model" / "exercise_label_encoder.pkl"
@@ -76,7 +76,6 @@ label_encoder = joblib.load(str(LABEL_ENCODER_PATH))
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-
 def get_db():
     db = SessionLocal()
     try:
@@ -84,26 +83,22 @@ def get_db():
     finally:
         db.close()
 
-
 # 요청 모델 정의
 class RegisterRequest(BaseModel):
     email: EmailStr
     password: str
     name: str
 
-
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
 
-
 class ProfileRequest(BaseModel):
-    user_id: int
+    email: str
     gender: str
     age: int
     weight: int
     height: int
-
 
 @app.post("/register")
 def register(req: RegisterRequest, db: Session = Depends(get_db)):
@@ -125,72 +120,74 @@ def login(req: LoginRequest, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == email).first()
     if not user or not verify_password(req.password, user.password):
         raise HTTPException(status_code=401, detail="이메일 또는 비밀번호가 일치하지 않습니다.")
-    return {"message": "로그인 성공", "user_id": user.id}
+    return {"message": "로그인 성공", "user_id": user.id, "name": user.name}
 
 
 @app.post("/profile")
 def create_profile(req: ProfileRequest, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.id == req.user_id).first()
+    user = db.query(User).filter(User.email == req.email).first()
     if not user:
         raise HTTPException(status_code=404, detail="사용자 없음")
-    if db.query(UserProfile).filter(UserProfile.user_id == req.user_id).first():
-        raise HTTPException(status_code=400, detail="이미 등록됨")
-    profile = UserProfile(
-        user_id=req.user_id,
-        gender=req.gender,
-        age=req.age,
-        weight=req.weight,
-        height=req.height
-    )
-    db.add(profile)
-    db.commit()
-    return {"message": "신체 정보 등록 완료"}
+    profile = db.query(UserProfile).filter(UserProfile.user_id == user.id).first()
+    if profile:
+        # 이미 등록되어 있으면 값만 업데이트
+        profile.gender = req.gender
+        profile.age = req.age
+        profile.weight = req.weight
+        profile.height = req.height
+        db.commit()
+        return {"message": "신체 정보가 수정되었습니다."}
+    else:
+        # 등록되어 있지 않으면 새로 생성
+        profile = UserProfile(
+            user_id=user.id,
+            gender=req.gender,
+            age=req.age,
+            weight=req.weight,
+            height=req.height
+        )
+        db.add(profile)
+        db.commit()
+        return {"message": "신체 정보 등록 완료"}
 
 
 @app.post(
     "/upload-image",
     response_model=UploadResponse,
-    summary="이미지 업로드 → 지표 계산 + 추천 + 리포트 생성",
-    description="""
-        사용자의 이미지를 업로드 받아 \n
-        1) MoveNet으로 포즈 추정  
-        2) 지표(어깨/골반 높이 차이, 각도) 계산 및 절대값 적용  
-        3) 동일 그룹(성별·연령) 기준 종합점수(6개 평균) 및 퍼센타일 / 평균·표준편차 계산  
-        4) 최근 5회 업로드 이력(오름차순 정렬)  
-        5) RandomForest 기반 운동 추천 + YouTube 영상 검색  
-        6) OpenAI GPT-4o로 “종합 체형 분석 & 추천 운동” 리포트 생성  
-        7) 결과(JSON) 반환  
-        """,
+    summary="이미지 업로드 → 포즈 추정 + 지표 계산 + RandomForest 운동 추천 + LLM 리포트 생성",
     )
+
 async def upload_image(
-    user_id: int,
+    email: str = Form(...),
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
 ):
-    # 4) 이미지 파일 저장
-    dest_path = UPLOAD_DIR / f"user_{user_id}_{file.filename}"
+    # 이미지 파일 저장
+    dest_path = UPLOAD_DIR / f"user_{email}_{file.filename}"
     with open(dest_path, "wb") as buf:
         shutil.copyfileobj(file.file, buf)
 
-    # 5) 사용자 프로필 조회
-    profile = db.query(UserProfile).filter_by(user_id=user_id).first()
+    # 사용자 프로필 조회
+    user = db.query(User).filter(User.email == email).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="사용자 없음")
+    profile = db.query(UserProfile).filter_by(user_id=user.id).first()
     if not profile:
         raise HTTPException(status_code=404, detail="사용자 프로필이 없습니다.")
-    user = db.query(User).filter(User.id == user_id).first()
 
-    # 6) 포즈 추정
+    # 포즈 추정
     keypoints, (w, h), orig_img = process_image_with_movenet(
         dest_path, interpreter, input_details, output_details
     )
     if keypoints is None or orig_img is None:
         raise HTTPException(status_code=400, detail="이미지 처리 실패")
 
-    # 7) 지표 계산
+    # 지표 계산
     analysis = extract_metrics_and_coords(keypoints, w, h)
     metrics = analysis["metrics"]
     coords = analysis["points_coords"]
 
-    # 8) 각도(degree) 값은 절대값으로 변환
+    # 지표 각도 값을 절대값으로 변환
     for deg_key in [
         "torso_vertical_tilt",
         "ear_hip_vertical_tilt",
@@ -200,7 +197,7 @@ async def upload_image(
         if metrics.get(deg_key) is not None:
             metrics[deg_key] = abs(metrics[deg_key])
 
-    # 9) 이전 업로드된 지표 불러와 변화량 계산 (두 번째 최신 레코드)
+    # 이전 업로드된 지표와의 변화량 계산
     prev_feature = (
         db.query(Feature)
         .filter(Feature.user_profile_id == profile.id)
@@ -241,7 +238,7 @@ async def upload_image(
             ]
         }
 
-    # 10) 시각화 이미지 저장 (StaticFiles 폴더 아래)
+    # 포즈 추정 시각화 이미지 저장
     stem = dest_path.stem
     kp_img = TMP_OUTPUT_DIR / f"{stem}_keypoints.png"
     sh_img = TMP_OUTPUT_DIR / f"{stem}_shoulder_hip.png"
@@ -271,7 +268,7 @@ async def upload_image(
         ear_img,
     )
 
-    # 11) 종합점수(composite_score_current) 계산 (6개 지표 평균)
+    # 6개 지표의 평균으로 종합점수 계산
     metric_values = [
         metrics["shoulder_height_diff"],
         metrics["hip_height_diff"],
@@ -285,7 +282,7 @@ async def upload_image(
     else:
         composite_score_current = sum(metric_values) / len(metric_values)
 
-    # 12) DB에 Feature 저장 (composite_score 컬럼에 값을 함께 저장)
+    # DB에 Feature 저장
     feature = Feature(
         user_profile_id=profile.id,
         image_filename=str(dest_path),
@@ -295,13 +292,13 @@ async def upload_image(
         ear_hip_vertical_tilt_deg=metrics["ear_hip_vertical_tilt"],
         shoulder_line_horizontal_tilt_deg=metrics["shoulder_line_horizontal_tilt"],
         hip_line_horizontal_tilt_deg=metrics["hip_line_horizontal_tilt"],
-        composite_score=composite_score_current,  # ★ composite 저장
+        composite_score=composite_score_current,
     )
     db.add(feature)
     db.commit()
     db.refresh(feature)
 
-    # 13) 동일 그룹(UserProfile.gender, UserProfile.age) 전체의 composite_score들만 조회 → 평균·표준편차·퍼센타일·최솟값·최댓값 계산
+    # 동일 그룹(성별, 나이) 전체의 종합점수 평균·표준편차·퍼센타일·최솟값·최댓값 계산
     comp_rows = (
         db.query(Feature.composite_score)
           .join(UserProfile)
@@ -315,17 +312,19 @@ async def upload_image(
     comp_list = [row[0] for row in comp_rows if row[0] is not None]
 
     if len(comp_list) > 0:
+        # 평균
         composite_mean = float(np.mean(comp_list))
+        # 표준편차
         composite_std  = float(np.std(comp_list, ddof=0))
 
-        # composite_score_current의 퍼센타일 계산
+        # 퍼센타일
         if composite_score_current is not None:
             rank = np.sum(np.array(comp_list) <= composite_score_current) / len(comp_list) * 100
             composite_percentile = round(float(rank), 1)
         else:
             composite_percentile = None
 
-        # 새로 추가: 그룹 내 종합점수의 min, max
+        # min, max
         composite_min = float(np.min(comp_list))
         composite_max = float(np.max(comp_list))
     else:
@@ -335,8 +334,7 @@ async def upload_image(
         composite_min        = None
         composite_max        = None
 
-    # 14) 이번 업로드 포함 이후 가장 최근 5개 조회 및 히스토리 생성
-    #    (select_entity_from() 대신 ORM 쿼리 후 파이썬 레벨에서 정렬)
+    # 이번 업로드 포함 최근 5개 업로드 조회
     recent_objs = (
         db.query(Feature)
         .filter(Feature.user_profile_id == profile.id)
@@ -344,7 +342,7 @@ async def upload_image(
         .limit(5)
         .all()
     )
-    # 파이썬 상에서 오름차순으로 정렬
+    # 업로드 날짜 오름차순 정렬
     recent_five = sorted(recent_objs, key=lambda f: f.created_at)
 
     history_list = []
@@ -377,7 +375,7 @@ async def upload_image(
             "created_at": created_at.isoformat(),
         })
 
-    # 15) 마지막 업로드 날짜, 경과 일수 계산
+    # 마지막 업로드 날짜, 경과 일수 계산
     last_feature = prev_feature or feature
     created_at_kst = last_feature.created_at
     if created_at_kst.tzinfo is None:
@@ -386,7 +384,7 @@ async def upload_image(
     now_kst = datetime.datetime.now(timezone(timedelta(hours=9)))
     days_since = (now_kst - created_at_kst).days
 
-    # 16) RandomForest 모델 운동 추천
+    # RandomForest 모델 운동 추천
     gender_map = {"남자": 0, "여자": 1}
     age_map = {10: 0, 20: 1, 30: 2, 40: 3, 50: 4, 60: 5}
     g_code = gender_map.get(profile.gender, 0)
@@ -417,7 +415,7 @@ async def upload_image(
             {"exercise": label, "probability": round(float(proba[i]) * 100, 1)}
         )
 
-    # 17) YouTube 영상 검색
+    # YouTube 영상 검색
     youtube_key = os.getenv("YOUTUBE_API_KEY")
     if not youtube_key:
         raise HTTPException(status_code=500, detail="YOUTUBE_API_KEY가 설정되어 있지 않습니다.")
@@ -448,34 +446,34 @@ async def upload_image(
             }
         )
 
-        # 18) LLM 종합 리포트 생성
+    # LLM 종합 리포트 생성
     prompt = f"""
-   사용자가 업로드한 이미지로부터 다음 지표가 계산되었습니다:
-   - shoulder_height_diff: {metrics['shoulder_height_diff']} px
-   - hip_height_diff: {metrics['hip_height_diff']} px
-   - torso_vertical_tilt: {metrics['torso_vertical_tilt']}°
-   - ear_hip_vertical_tilt: {metrics['ear_hip_vertical_tilt']}°
-   - shoulder_line_horizontal_tilt: {metrics['shoulder_line_horizontal_tilt']}°
-   - hip_line_horizontal_tilt: {metrics['hip_line_horizontal_tilt']}°
-
-   ※ 픽셀(px)로 측정된 값은 반드시 “px” 단위로, 각도로 측정된 값은 반드시 “°” 단위로만 표기하세요.
-      절대로 mm나 cm 등 다른 단위로 변환하지 마시고, 주어진 단위 그대로 쓰시기 바랍니다.
-
-   종합점수 퍼센타일(composite_percentile): {composite_percentile}%
-   (같은 성별·연령 그룹 내에서 해당 사용자의 종합점수가 상위 {composite_percentile}% 수준임을 의미)
-
-   추천 운동과 확률:
-   {recommendations}
-
-   YouTube 영상 링크:
-   {video_results}
-
-   1. 위 “px”와 “°” 단위를 절대 존중하여, 다른 단위를 절대 사용하지 말 것.
-   2. 단순히 수치를 나열하는 것을 넘어서, 전문가 관점의 의견(인사이트, 조언, 팁 등)을 적극적으로 추가할 것.
-   3. “사용자”가 쉽게 이해할 수 있도록, 전문 용어는 최소화하고 부드러운 어투로 설명할 것.
-
-   위 지침을 바탕으로, 사용자가 이해하기 쉬운 한글 “종합 체형 분석”과 “추천 운동” 리포트를 작성해주세요.
-   """
+       사용자가 업로드한 이미지로부터 다음 지표가 계산되었습니다:
+       - shoulder_height_diff: {metrics['shoulder_height_diff']} px
+       - hip_height_diff: {metrics['hip_height_diff']} px
+       - torso_vertical_tilt: {metrics['torso_vertical_tilt']}°
+       - ear_hip_vertical_tilt: {metrics['ear_hip_vertical_tilt']}°
+       - shoulder_line_horizontal_tilt: {metrics['shoulder_line_horizontal_tilt']}°
+       - hip_line_horizontal_tilt: {metrics['hip_line_horizontal_tilt']}°
+    
+       ※ 픽셀(px)로 측정된 값은 반드시 “px” 단위로, 각도로 측정된 값은 반드시 “°” 단위로만 표기하세요.
+          절대로 mm나 cm 등 다른 단위로 변환하지 마시고, 주어진 단위 그대로 쓰시기 바랍니다.
+    
+       종합점수 퍼센타일(composite_percentile): {composite_percentile}%
+       (같은 성별·연령 그룹 내에서 해당 사용자의 종합점수가 상위 {composite_percentile}% 수준임을 의미)
+    
+       추천 운동과 확률:
+       {recommendations}
+    
+       YouTube 영상 링크:
+       {video_results}
+    
+       1. 위 “px”와 “°” 단위를 절대 존중하여, 다른 단위를 절대 사용하지 말 것.
+       2. 단순히 수치를 나열하는 것을 넘어서, 전문가 관점의 의견(인사이트, 조언, 팁 등)을 적극적으로 추가할 것.
+       3. “사용자”가 쉽게 이해할 수 있도록, 전문 용어는 최소화하고 부드러운 어투로 설명할 것.
+    
+       위 지침을 바탕으로, 사용자가 이해하기 쉬운 한글 “종합 체형 분석”과 “추천 운동” 리포트를 작성해주세요.
+       """
 
     openrouter_key = os.getenv("OPENROUTER_API_KEY")
     if not openrouter_key:
@@ -498,7 +496,7 @@ async def upload_image(
     data = resp.json()
     report = data["choices"][0]["message"]["content"]
 
-    # 19) Static URL 방식으로 이미지 경로 반환
+    # Static URL 방식 이미지 반환
     base_url = os.getenv("BASE_URL")
     visuals_urls = {
         "keypoints": f"{base_url}/static/pose_results/{stem}_keypoints.png",
@@ -526,14 +524,12 @@ async def upload_image(
             "shoulder_line_horizontal_tilt_deg": metrics["shoulder_line_horizontal_tilt"],
             "hip_line_horizontal_tilt_deg": metrics["hip_line_horizontal_tilt"],
         },
-        # 개별 퍼센타일 대신 종합점수 퍼센타일만 제공
         "composite_score_current": composite_score_current,
         "composite_percentile": composite_percentile,
         "composite_mean": composite_mean,
         "composite_std": composite_std,
         "composite_min": composite_min,
         "composite_max": composite_max,
-
         "last_upload_date": last_date_iso,
         "days_since": days_since,
         "changes": changes,
