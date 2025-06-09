@@ -166,7 +166,7 @@ async def upload_image(
 ):
     # 이미지 파일 저장
     # 타임 스탬프가 포함된 고유 파일 이름 생성
-    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     original_name = Path(file.filename).name
     saved_filename = f"user_{email}_{timestamp}_{original_name}"
     dest_path = UPLOAD_DIR / saved_filename
