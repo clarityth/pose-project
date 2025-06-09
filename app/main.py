@@ -461,12 +461,12 @@ async def upload_image(
     # LLM 종합 리포트 생성
     prompt = f"""
        사용자가 업로드한 이미지로부터 다음 지표가 계산되었습니다:
-       - shoulder_height_diff: {metrics['shoulder_height_diff']} px
-       - hip_height_diff: {metrics['hip_height_diff']} px
-       - torso_vertical_tilt: {metrics['torso_vertical_tilt']}°
-       - ear_hip_vertical_tilt: {metrics['ear_hip_vertical_tilt']}°
-       - shoulder_line_horizontal_tilt: {metrics['shoulder_line_horizontal_tilt']}°
-       - hip_line_horizontal_tilt: {metrics['hip_line_horizontal_tilt']}°
+       - 어깨 높이 차이: {metrics['shoulder_height_diff']} px
+       - 어깨 기울기: {metrics['shoulder_line_horizontal_tilt']}°
+       - 골반 높이 차이: {metrics['hip_height_diff']} px
+       - 골반 기울기: {metrics['hip_line_horizontal_tilt']}°
+       - 몸통 수직 기울기: {metrics['torso_vertical_tilt']}°
+       - 귀-골반 기울기: {metrics['ear_hip_vertical_tilt']}°
     
        ※ 픽셀(px)로 측정된 값은 반드시 “px” 단위로, 각도로 측정된 값은 반드시 “°” 단위로만 표기하세요.
           절대로 mm나 cm 등 다른 단위로 변환하지 마시고, 주어진 단위 그대로 쓰시기 바랍니다.
