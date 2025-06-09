@@ -444,11 +444,10 @@ async def upload_image(
             },
         )
         items = resp.json().get("items", [])
-        videos_for_exercise = []
         for item in items:
             snippet = item["snippet"]
             vid_id = item["id"]["videoId"]
-            videos_for_exercise.append(
+            video_results.append(
                 {
                     "exercise": rec["exercise"],
                     "video_title": snippet.get("title", ""),
@@ -457,11 +456,6 @@ async def upload_image(
                     "thumbnail_url": snippet.get("thumbnails", {}).get("medium", {}).get("url", ""),
                 }
             )
-        if videos_for_exercise:
-            video_results.append({
-                "exercise": rec["exercise"],
-                "videos": videos_for_exercise
-            })
 
     # LLM 종합 리포트 생성
     prompt = f"""
