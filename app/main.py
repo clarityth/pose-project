@@ -471,8 +471,8 @@ async def upload_image(
        ※ 픽셀(px)로 측정된 값은 반드시 “px” 단위로, 각도로 측정된 값은 반드시 “°” 단위로만 표기하세요.
           절대로 mm나 cm 등 다른 단위로 변환하지 마시고, 주어진 단위 그대로 쓰시기 바랍니다.
     
-       종합점수 퍼센타일(composite_percentile): {composite_percentile}%
-       (같은 성별·연령 그룹 내에서 해당 사용자의 종합점수가 상위 {composite_percentile}% 수준임을 의미)
+        - 종합점수 상위 퍼센타일: {composite_percentile}%
+        (동일 성별·연령 그룹 내에서 상위 {composite_percentile}% 위치에 해당합니다. 퍼센타일이 낮을수록 체형이 더 좋은 상태입니다.)
     
        추천 운동과 확률:
        {recommendations}
