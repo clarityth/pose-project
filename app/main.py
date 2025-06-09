@@ -165,7 +165,13 @@ async def upload_image(
     db: Session = Depends(get_db),
 ):
     # 이미지 파일 저장
-    dest_path = UPLOAD_DIR / f"user_{email}_{file.filename}"
+    # 타임 스탬프가 포함된 고유 파일 이름 생성
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    original_name = Path(file.filename).name
+    saved_filename = f"user_{email}_{timestamp}_{original_name}"
+    dest_path = UPLOAD_DIR / saved_filename
+
+    # 이미지 파일 저장
     with open(dest_path, "wb") as buf:
         shutil.copyfileobj(file.file, buf)
 
