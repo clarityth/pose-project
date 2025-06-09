@@ -270,10 +270,8 @@ async def upload_image(
         ear_img,
     )
 
-    # 6개 지표의 평균으로 종합점수 계산
+    # 4개의 기울기 지표의 평균으로 종합점수 계산
     metric_values = [
-        metrics["shoulder_height_diff"],
-        metrics["hip_height_diff"],
         metrics["torso_vertical_tilt"],
         metrics["ear_hip_vertical_tilt"],
         metrics["shoulder_line_horizontal_tilt"],
@@ -359,8 +357,6 @@ async def upload_image(
             "ear_hip_tilt": f"{base_url}/static/pose_results/{stem_hist}_ear_hip_tilt.png",
         }
         vals = [
-            feat.shoulder_height_diff_px,
-            feat.hip_height_diff_px,
             feat.torso_vertical_tilt_deg,
             feat.ear_hip_vertical_tilt_deg,
             feat.shoulder_line_horizontal_tilt_deg,
