@@ -349,13 +349,20 @@ async def upload_image(
     base_url = os.getenv("BASE_URL")
     for feat in recent_five:
         # 이미지 URL 만들기
-        stem_hist = Path(feat.image_filename).stem
+        stem_hist = Path(feat.image_filename).with_suffix("").name
+
         visuals = {
             "keypoints": f"{base_url}/static/pose_results/{stem_hist}_keypoints.png",
             "shoulder_hip": f"{base_url}/static/pose_results/{stem_hist}_shoulder_hip.png",
             "torso_tilt": f"{base_url}/static/pose_results/{stem_hist}_torso_tilt.png",
             "ear_hip_tilt": f"{base_url}/static/pose_results/{stem_hist}_ear_hip_tilt.png",
         }
+
+        for key, url in visuals.items():
+            local_path = TMP_OUTPUT_DIR / f"{stem_hist}_{key}.png"
+            exists = local_path.exists()
+            print(f"[CHECK] {local_path} → {exists}")
+
         vals = [
             feat.torso_vertical_tilt_deg,
             feat.ear_hip_vertical_tilt_deg,
