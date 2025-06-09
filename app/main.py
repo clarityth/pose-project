@@ -444,19 +444,24 @@ async def upload_image(
             },
         )
         items = resp.json().get("items", [])
-        if not items:
-            continue
-        snippet = items[0]["snippet"]
-        vid_id = items[0]["id"]["videoId"]
-        video_results.append(
-            {
+        videos_for_exercise = []
+        for item in items:
+            snippet = item["snippet"]
+            vid_id = item["id"]["videoId"]
+            videos_for_exercise.append(
+                {
+                    "exercise": rec["exercise"],
+                    "video_title": snippet.get("title", ""),
+                    "video_desc": snippet.get("description", ""),
+                    "video_url": f"https://www.youtube.com/watch?v={vid_id}",
+                    "thumbnail_url": snippet.get("thumbnails", {}).get("medium", {}).get("url", ""),
+                }
+            )
+        if videos_for_exercise:
+            video_results.append({
                 "exercise": rec["exercise"],
-                "video_title": snippet.get("title", ""),
-                "video_desc": snippet.get("description", ""),
-                "video_url": f"https://www.youtube.com/watch?v={vid_id}",
-                "thumbnail_url": snippet.get("thumbnails", {}).get("medium", {}).get("url", ""),
-            }
-        )
+                "videos": videos_for_exercise
+            })
 
     # LLM 종합 리포트 생성
     prompt = f"""
@@ -480,7 +485,7 @@ async def upload_image(
        YouTube 영상 링크:
        {video_results}
     
-       1. 위 “px”와 “°” 단위를 절대 존중하여, 다른 단위를 절대 사용하지 말 것.
+       1. 위 “px”와 “°” 단위 이외의 단위를 절대 사용하지 말 것.
        2. 단순히 수치를 나열하는 것을 넘어서, 전문가 관점의 의견(인사이트, 조언, 팁 등)을 적극적으로 추가할 것.
        3. “사용자”가 쉽게 이해할 수 있도록, 전문 용어는 최소화하고 부드러운 어투로 설명할 것.
     
