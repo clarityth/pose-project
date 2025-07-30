@@ -237,23 +237,39 @@
     ```bash
     pip install -r requirements.txt
     ```
-4.  **데이터베이스 연결**
-    -   로컬 환경에 PostgreSQL을 설치하고 실행해야 합니다.
-    -   `app/database.py` 파일 내의 `SQLALCHEMY_DATABASE_URL`을 자신의 로컬 DB 설정에 맞게 수정합니다.
+4.  **`.env` 파일 생성**
+    프로젝트 루트 디렉토리에 `.env` 파일을 생성하고 아래 내용을 자신의 환경에 맞게 수정합니다. 이 파일은 데이터베이스 연결 정보 및 외부 API 키를 관리하는 데 사용됩니다.
 
-5.  **기준 데이터베이스 채우기 (필수)**
+    ```env
+    # PostgreSQL DB 연결 정보 (사용자명, 비밀번호, 호스트, 포트, DB명 순서)
+    DATABASE_URL="postgresql://user:password@host:port/dbname"
+
+    # LLM 리포트 생성을 위한 OpenRouter API 키
+    OPENROUTER_API_KEY="sk-or-..."
+
+    # 운동 추천 영상 검색을 위한 YouTube API 키
+    YOUTUBE_API_KEY="AIzaSy..."
+
+    # BASE_URL
+    BASE_URL="http://127.0.0.1:8000"
+    ```
+5.  **데이터베이스 연결**
+    -   로컬 환경에 PostgreSQL을 설치하고 실행해야 합니다.
+    -   `.env` 파일에 `DATABASE_URL`을 올바르게 설정했다면 별도의 수정이 필요 없습니다.
+
+6.  **기준 데이터베이스 채우기 (필수)**
     통계 비교 분석 기능을 사용하기 위해서는, 로컬 데이터베이스에 AI Hub 데이터셋을 기반으로 한 '표준 인구 집단 데이터'가 필요합니다. 아래 명령어를 실행하여 데이터베이스를 채웁니다.
     ```bash
     # 프로젝트 루트 디렉토리에서 실행
     python movenet_results/add_db_from_csv.py
     ```
-    > **Note**: 이 스크립트는 `movenet_results` 폴더 내의 CSV 파일들을 읽어 DB에 저장합니다. 실행 전, 4번 단계의 데이터베이스 연결 설정이 올바르게 완료되었는지 확인해주세요.
+    > **Note**: 이 스크립트는 `movenet_results` 폴더 내의 CSV 파일들을 읽어 DB에 저장합니다. 실행 전, 5번 단계의 데이터베이스 연결 설정이 올바르게 완료되었는지 확인해주세요.
 
-6.  **API 서버 실행**
+7.  **API 서버 실행**
     ```bash
     uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
     ```
-7.  **API 문서 확인**: 서버 실행 후, 브라우저에서 `http://127.0.0.1:8000/docs` 로 접속하면 모든 API 명세를 확인하고 테스트할 수 있습니다.
+8.  **API 문서 확인**: 서버 실행 후, 브라우저에서 `http://127.0.0.1:8000/docs` 로 접속하면 모든 API 명세를 확인하고 테스트할 수 있습니다.
 
 ## 4. 향후 개선 과제
 
