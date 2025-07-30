@@ -276,17 +276,28 @@ async def upload_image(
         ear_img,
     )
 
-    # 4개의 기울기 지표의 평균으로 종합점수 계산
-    metric_values = [
-        metrics["torso_vertical_tilt"],
-        metrics["ear_hip_vertical_tilt"],
-        metrics["shoulder_line_horizontal_tilt"],
-        metrics["hip_line_horizontal_tilt"],
-    ]
-    if any(v is None or (isinstance(v, float) and np.isnan(v)) for v in metric_values):
-        composite_score_current = None
+    # 가중치 기반으로 종합점수 계산
+    weights = {
+        "ear_hip_vertical_tilt": 0.328,
+        "shoulder_line_horizontal_tilt": 0.324,
+        "torso_vertical_tilt": 0.247,
+        "hip_line_horizontal_tilt": 0.154,
+    }
+    
+    score_parts = []
+    for key, weight in weights.items():
+        value = metrics.get(key)
+        if value is not None and not (isinstance(value, float) and np.isnan(value)):
+            score_parts.append(value * weight)
+        else:
+            # 하나라도 값이 없으면 종합점수 계산 불가
+            score_parts = None
+            break
+            
+    if score_parts is not None:
+        composite_score_current = sum(score_parts)
     else:
-        composite_score_current = sum(metric_values) / len(metric_values)
+        composite_score_current = None
 
     # DB에 Feature 저장
     feature = Feature(
